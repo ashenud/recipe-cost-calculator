@@ -1,0 +1,348 @@
+body {
+    font-family: 'Circular Std Book';
+}
+
+.navbar {
+    height: 60px;
+    font-family: "Poppins", sans-serif;
+    background-color: #d8aa03 !important;
+}
+
+.hamburger-btn {
+    background: none;
+    font-size: 25px;
+    border: none;
+    color: #ffffff;
+    margin: 0;
+    padding: 0 0 0 20px;
+}
+
+.nav-title-custom {
+    font-size: 25px;
+    color: #ffffff !important; 
+    margin-left: 20px;
+    display: inline-block;
+    width: auto;
+}
+
+.current-page {
+    font-size: 17px;
+    color: #fff;
+    margin: 0 0 -6px -10px;
+}
+
+.user-icon {
+    color: #ffffff;
+    font-size: 20px !important;
+    position: initial !important;
+    font-weight: bold;
+    opacity: 1 !important;
+    margin-right: 3px;
+}
+
+.dropdown .user-anchor i {
+    font-size: 25px;
+    color: #fff;
+}
+
+.dropdown-toggle:after {
+    display: none;
+}
+
+.navbar-nav .dropdown-menu {
+    background-color: #fff;
+    box-shadow: 0px 10px 50px 0px rgba(0, 0, 0, 0.2);
+    border-radius: 0.125rem;
+    transition: all 150ms linear;
+    font-size: 10px;
+    min-width: 8rem;
+    padding: .5rem 0;
+    margin: -10px 0 0 -90px;
+    background-clip: padding-box;
+}
+
+.dropdown-menu:before {
+    position: absolute;
+    content: "";
+    top: -4px;
+    left: 111px;
+    right: auto;
+    color: #FFFFFF;
+    border-bottom: .4em solid;
+    border-right: .4em solid transparent;
+    border-left: .4em solid transparent;
+}
+
+.dropdown-item {
+    color: #212529;
+    cursor: pointer;
+}
+
+.dropdown-menu .dropdown-item i {
+    margin-right: 8px;
+    font-size: 12px;
+    position: relative;
+    top: 1px;
+}
+
+.side-bar {
+    width: 275px;
+    position: fixed;
+    top: 60px;
+    background: #ffffff;
+    left: -275px;
+    height: calc(100vh - 105px);
+    z-index: 100;
+    transition: left 0.4s linear;
+    border-right: 1px solid #e0e0e0;
+    overflow-y: auto;
+}
+
+.side-bar.open-sidebar {
+    left: 0;
+}
+
+.sidebar-overlay {
+    width: 100%;
+    position: fixed;
+    top: 60px;
+    left: 0;
+    height: calc(100vh - 105px);
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 99;
+    display: none;
+}
+
+.main-body {
+    width: 100%;
+    top: 60px;
+    position:absolute;
+    left: 0;
+    background: #ffffff;
+    transition: all 0.4s linear;
+    height: calc(100vh - 105px);
+    overflow: auto;
+}
+
+.main-body.open-sidebar {
+    width: calc(100% - 275px);
+    left: 275px;
+}
+
+.main-body .content {
+    margin-top: 15px;
+}
+
+.side-bar .list-group {
+    margin-top: 20px;
+}
+
+.side-item .side-link:not(.btn) {
+    display: block;
+    padding: 8px 25px;
+    cursor: pointer;
+    font-size: 15px;
+    line-height: 1.625rem;
+    color: #7c7c7c;
+    width: 255px;
+    margin-left: 10px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.side-item .side-link:not(.btn):focus,
+.side-item .side-link:not(.btn):hover, 
+.side-item .side-link:not(.btn).active {
+    background-color: rgb(77 127 43 / 16%);
+    border-radius: 0.2275rem;
+    width: 255px;
+    margin-left: 10px;
+    color: #d8aa03;
+}
+
+.side-item .side-link:not(.btn) i {
+    font-size: 18px;
+    position: relative;
+    top: 3px;
+    text-align: center;
+    width: 21px;
+    margin-right: 20px;
+    font-weight: bold;
+}
+
+.side-item {
+    margin-bottom: 5px;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 101;
+}
+
+footer .footer-area {
+    font-family: "Poppins", sans-serif;
+    background-color: #ffdb4a!important;
+    height: 45px;
+}
+
+.btn-sheding {
+    color: #454545;
+    background-color: #9db48d !important;
+}
+
+.btn-disabled {
+    background-color: #959893 !important;
+    cursor: not-allowed !important;
+}
+
+.btn-deleted {
+    background-color: #4a4949;
+    color: #fff7f7;
+}
+
+.btn-deleted:hover {
+    color: #ffffff;
+}
+
+.btn-primary-custom,
+.btn-primary-custom:hover {
+    color: #fff;
+    background-color: #d8aa03 !important;
+}
+
+.btn-secondory-custom,
+.btn-secondory-custom:hover {
+    color: #fff;
+    background-color: #14280e8f !important;
+}
+
+.btn-add-floating {
+    background-color: #d8aa03;
+    position: fixed;
+    bottom: 65px;
+    right: 30px;
+    z-index: 101;
+    font-size: 22px;
+}
+
+.btn-add-floating.focus, 
+.btn-add-floating:focus, 
+.btn-add-floating:hover {
+    color: #fff;
+    background-color:#d8aa03 !important;
+}
+
+.custom-modal-content {
+    border: 0;
+    border-radius: 0;
+}
+
+.form-control:focus {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border-color: #d8aa03 !important;
+    -webkit-box-shadow: inset 0 0 0 1px #d8aa03 !important;
+    box-shadow: inset 0 0 0 1px #d8aa03 !important;
+}
+
+.select2-label{
+    font-size: 12px;
+    color: black;
+    margin: -18px 0 0 10px;
+    margin: -8px 0 0 10px;
+    display: block;
+}
+
+.form-area .select2.select2-container.select2-container--default {
+    width: 100% !important;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+/* @@ deafult css @@ */
+.text-right {
+    text-align: right;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 6px;
+}
+  
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888; 
+    border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+}
+
+/* @@ sweet alert css @@ */
+.swal2-actions .swal2-styled {
+    border-radius: .25rem !important;
+    padding: 7px 35px !important;
+    text-align: center !important;
+    width: 121.6px !important;
+}
+
+.swal2-actions .swal2-styled.swal2-confirm {
+    background-color: #d8aa03 !important;
+}
+
+.swal2-actions .swal2-styled.swal2-cancel  {
+    background-color:#14280e8f !important;
+}
+
+.swal2-actions .swal2-styled:focus {
+    box-shadow: none !important;
+}
+
+@media screen and (max-width: 992px) {  
+    .user-anchor {
+        margin-bottom: -10px;
+    }
+}           
+
+@media screen and (max-width: 768px) {
+    .sidebar-overlay.open-sidebar {
+        display: block;
+    }
+    .main-body.open-sidebar {
+        width: 100%;
+        left: 0;
+    }
+}     
+
+@media screen and (max-width: 576px) {
+    .hamburger-btn {
+        padding: 0;
+        font-size: 20px;
+    }    
+    .nav-title-custom {
+        font-size: 20px;
+        margin-left: 8px;
+    }    
+    .current-page {
+        font-size: 14px;
+    }
+}  
