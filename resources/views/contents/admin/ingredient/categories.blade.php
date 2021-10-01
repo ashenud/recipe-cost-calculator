@@ -31,7 +31,7 @@
                 </table>
             </div>
     
-            <button type="button" class="btn btn-add-floating btn-primary btn-lg btn-floating" onclick="openInsertModal(0)">
+            <button type="button" class="btn btn-primary btn-lg btn-floating" onclick="openInsertModal(0)">
                 <i class="fas fa-plus"></i>
             </button>
     
@@ -63,7 +63,7 @@
                             <input type="hidden" id="id" name="id"/>
                             <input type="hidden" id="type" name="type" value="0"/>
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">CLOCE</button>
-                            <button type="button" class="btn btn-submit float-right" onclick="submitData()">SUBMIT</button>
+                            <button type="button" class="btn btn-primary btn-submit float-right" onclick="submitData()">SUBMIT</button>
                         </div>
                     </div>
                 </div>

@@ -221,153 +221,26 @@ body {
     border-color: #17c0dc;
 }
 
-
-
-
-/*
-|--------------------------------------------------------------------------
-| Dashboard Header Welcomebar/Navbar
-|--------------------------------------------------------------------------
-|
-*/
-.dashboard-header {
-    padding: 0px;
-    border-bottom: 1px solid #e6e6f2;
-    -webkit-box-shadow: 0px 0px 28px 0px rgba(82, 63, 105, 0.13);
-    box-shadow: 0px 0px 28px 0px rgba(82, 63, 105, 0.13);
-    min-height: 30px;
-}
-.navbar {
-    padding: 0px;
-    border-bottom: 1px solid #e6e6f2;
-    -webkit-box-shadow: 0px 0px 28px 0px rgba(82, 63, 105, 0.13);
-    box-shadow: 0px 0px 28px 0px rgba(82, 63, 105, 0.13);
-    min-height: 30px;
-}
-.navbar-brand {
-    display: inline-block;
-    line-height: inherit;
-    white-space: nowrap;
-    padding: 12px 8px;
-    font-size: 15px;
-    text-transform: uppercase;
-    font-weight: 700;
-    color: #fff;
-}
-.navbar-brand:hover {
-    color: #fff !important;
-}
-.navbar-right-top .nav-item {
-    border-right: 1px solid #e6e6f2;
-}
-.navbar-right-top .nav-item:last-child {
-    border: none;
-}
-.navbar-right-top .nav-item .nav-link {
-    padding: 13px 20px;
-    font-size: 16px;
-    line-height: 2;
-    color: #82849f;
-}
-.welcome-bar {
-    padding: 6px !important;
-}
-.welcome-bar .welcome-text {
-    font-size: 15px;
-}
-.main-navbar {
-    top: 60px;
-}
-.main-navbar .dropdown-item,
-.main-navbar .navbar-nav .nav-link {
-    color: #fff;
-    font-size: 12px;
-}
-.main-navbar .btn-logout {
-    color: #fff;
-    cursor: pointer;
-    padding: 10px 0;
-}
-.main-navbar .btn-logout i {
-    font-size: 18px;
-    font-weight: bold;
-}
-.main-navbar .navbar-toggler i {
-    font-size: 18px;
-    color: #fff;
-}
-.main-navbar .navbar-toggler:focus {
-    outline: none;
-    box-shadow: none;
-    border: none;
-}
-/* hover with js effect */
-.dropdown-menu {
-    margin-top: 0;
-    padding: 10px 0;
-    background: #1f652e;
-}
-.dropdown-menu .dropdown-item {
-    color: #fff;
-}
-.dropdown-menu .dropdown-toggle::after {
-    vertical-align: middle;
-    border-left: 4px solid;
-    border-bottom: 4px solid transparent;
-    border-top: 4px solid transparent;
-}
-.dropdown-menu .dropdown .dropdown-menu {
-    left: 100%;
-    top: 0%;
-    margin:0 20px;
-    border-width: 0;
-}
-.dropdown-item:focus, .dropdown-item:hover {
-    background-color: #000;
-}
-.dropdown-menu > li.show > a{
-	color: white;
-}
-@media (min-width: 768px) {
-    .dropdown-menu .dropdown .dropdown-menu {
-        margin:0;
-        border-width: 1px;
-    }
+.btn-sheding {
+    color: #454545;
+    background-color: #9db48d !important;
 }
 
-/*-----------------------
-| Page options
--------------------------*/
-.pageheader-title {
-    font-size: 24px;
-    margin-bottom: 8px;
-    font-weight: bold;
+.btn-disabled {
+    background-color: #959893 !important;
+    cursor: not-allowed !important;
 }
 
-
-
-
-/*
-|--------------------------------------------------------------------------
-| Dashboard Container / Wrapper
-|--------------------------------------------------------------------------
-|
-*/
-.dashboard-main-wrapper {
-    min-height: 100%;
-    padding-top: 70px;
-    position: relative;
+.btn-floating {
+    position: fixed;
+    bottom: 65px;
+    right: 30px;
+    z-index: 101;
+    border-radius: 50px;
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
 }
-.dashboard-wrapper {
-    position: relative;
-    left: 0;
-    margin-left: 15px;
-    margin-top: 40px;
-    padding-bottom: 60px;
-}
-
-
-
 
 
 /*
@@ -398,8 +271,6 @@ body {
     position: absolute;
     width: 450px;
 }
-
-
 
 
 
@@ -491,8 +362,6 @@ body {
     background-color: #000;
     border-color: #000;
 }
-
-
 
 
 
@@ -722,33 +591,28 @@ select[readonly].select2-hidden-accessible + .select2-container .select2-selecti
     background: #555; 
 }
 
-/*-----------------------
-| Jquery ui Autocomplete
--------------------------*/
-
-
-
 
 /*
 |--------------------------------------------------------------------------
-| Footer area
+| Sweetalert2 css
 |--------------------------------------------------------------------------
 |
 */
-.footer {
-    border-top: 1px solid rgba(152, 166, 173, .2);
-    padding: 5px 30px 5px;
-    color: #fff;
-    background-color: #1f652e;
-    width: 100%;
-    z-index:1000;
-    position: fixed;bottom: 0;
-    text-align: center;
-    font-size: 14px;
+.swal2-actions .swal2-styled {
+    border-radius: .25rem !important;
+    padding: 7px 35px !important;
+    text-align: center !important;
+    width: 121.6px !important;
 }
-.footer .footer-links a {
-    color: #71748d;
-    margin-left: 1.5rem;
-    -webkit-transition: all .4s;
-    transition: all .4s;
+
+.swal2-actions .swal2-styled.swal2-confirm {
+    background-color: #d8aa03 !important;
+}
+
+.swal2-actions .swal2-styled.swal2-cancel  {
+    background-color:#14280e8f !important;
+}
+
+.swal2-actions .swal2-styled:focus {
+    box-shadow: none !important;
 }

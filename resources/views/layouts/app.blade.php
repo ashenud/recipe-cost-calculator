@@ -25,7 +25,7 @@
     <link rel="stylesheet" href="{{ asset('vendor/jquery/css/jquery-ui.min.css')}}">
     <link rel="stylesheet" href="{{ asset('vendor/select2/select2.min.css')}}">
     <link rel="stylesheet" href="{{ asset('libs/css/style.css') }}">
-    <link rel="stylesheet" href="{{ asset('libs/css/custom-layout.css')}}">
+    <link rel="stylesheet" href="{{ asset('libs/css/app-layout.css')}}">
 
     @yield('css')
 
@@ -66,7 +66,7 @@
     <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('vendor/sweetalert/sweetalert2.all.min.js') }}"></script>
     <script src="{{ asset('vendor/select2/select2.min.js') }}"></script>
-    <script src="{{ asset('libs/js/custom-script.js')}}"></script>
+    <script src="{{ asset('libs/js/app-script.js')}}"></script>
 
     @yield('script')
 

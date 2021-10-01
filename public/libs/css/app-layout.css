@@ -1,0 +1,242 @@
+/*
+|--------------------------------------------------------------------------
+| NavBar
+|--------------------------------------------------------------------------
+|
+*/
+.navbar {
+    height: 60px;
+    font-family: "Poppins", sans-serif;
+    background-color: #d8aa03 !important;
+}
+
+.navbar .hamburger-btn {
+    background: none;
+    font-size: 25px;
+    border: none;
+    color: #ffffff;
+    margin: 0;
+    padding: 0 0 0 20px;
+}
+
+.navbar .nav-title {
+    font-size: 25px;
+    color: #ffffff !important; 
+    margin-left: 20px;
+    display: inline-block;
+    width: auto;
+}
+
+.navbar .current-page {
+    font-size: 17px;
+    color: #fff;
+    margin: 0 0 -6px -10px;
+}
+
+.navbar .user-icon {
+    color: #ffffff;
+    font-size: 20px !important;
+    position: initial !important;
+    font-weight: bold;
+    opacity: 1 !important;
+    margin-right: 3px;
+}
+
+.navbar .dropdown .user-anchor i {
+    font-size: 25px;
+    color: #fff;
+}
+
+.navbar .dropdown-toggle:after {
+    display: none;
+}
+
+.navbar .dropdown-menu {
+    background-color: #fff;
+    box-shadow: 0px 10px 50px 0px rgba(0, 0, 0, 0.2);
+    border-radius: 0.125rem;
+    transition: all 150ms linear;
+    font-size: 10px;
+    min-width: 8rem;
+    padding: .5rem 0;
+    margin: -10px 0 0 -90px;
+    background-clip: padding-box;
+}
+
+.navbar .dropdown-menu:before {
+    position: absolute;
+    content: "";
+    top: -4px;
+    left: 111px;
+    right: auto;
+    color: #FFFFFF;
+    border-bottom: .4em solid;
+    border-right: .4em solid transparent;
+    border-left: .4em solid transparent;
+}
+
+.navbar .dropdown-item {
+    color: #212529;
+    cursor: pointer;
+}
+
+.navbar .dropdown-menu .dropdown-item i {
+    margin-right: 8px;
+    font-size: 12px;
+    position: relative;
+    top: 1px;
+}
+
+/*
+|--------------------------------------------------------------------------
+| SideBar
+|--------------------------------------------------------------------------
+|
+*/
+.side-bar {
+    width: 275px;
+    position: fixed;
+    top: 60px;
+    background: #ffffff;
+    left: -275px;
+    height: calc(100vh - 105px);
+    z-index: 100;
+    transition: left 0.4s linear;
+    border-right: 1px solid #e0e0e0;
+    overflow-y: auto;
+}
+
+.side-bar.open-sidebar {
+    left: 0;
+}
+
+.side-bar .list-group {
+    margin-top: 20px;
+}
+
+.side-bar .side-item .side-link:not(.btn) {
+    display: block;
+    padding: 8px 25px;
+    cursor: pointer;
+    font-size: 15px;
+    line-height: 1.625rem;
+    color: #7c7c7c;
+    width: 255px;
+    margin-left: 10px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.side-bar .side-item .side-link:not(.btn):focus,
+.side-bar .side-item .side-link:not(.btn):hover, 
+.side-bar .side-item .side-link:not(.btn).active {
+    background-color: rgb(77 127 43 / 16%);
+    border-radius: 0.2275rem;
+    width: 255px;
+    margin-left: 10px;
+    color: #d8aa03;
+}
+
+.side-bar .side-item .side-link:not(.btn) i {
+    font-size: 18px;
+    position: relative;
+    top: 3px;
+    text-align: center;
+    width: 21px;
+    margin-right: 20px;
+    font-weight: bold;
+}
+
+.side-bar .side-item {
+    margin-bottom: 5px;
+}
+
+.sidebar-overlay {
+    width: 100%;
+    position: fixed;
+    top: 60px;
+    left: 0;
+    height: calc(100vh - 105px);
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 99;
+    display: none;
+}
+
+
+/*
+|--------------------------------------------------------------------------
+| MainBody
+|--------------------------------------------------------------------------
+|
+*/
+.main-body {
+    width: 100%;
+    top: 60px;
+    position:absolute;
+    left: 0;
+    background: #ffffff;
+    transition: all 0.4s linear;
+    height: calc(100vh - 105px);
+    overflow: auto;
+}
+
+.main-body.open-sidebar {
+    width: calc(100% - 275px);
+    left: 275px;
+}
+
+.main-body .content {
+    margin-top: 15px;
+}
+
+
+/*
+|--------------------------------------------------------------------------
+| Footer
+|--------------------------------------------------------------------------
+|
+*/
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 101;
+}
+
+footer .footer-area {
+    font-family: "Poppins", sans-serif;
+    background-color: #ffdb4a!important;
+    height: 45px;
+}
+
+
+
+@media screen and (max-width: 992px) {  
+    .navbar .dropdown .user-anchor {
+        margin-bottom: -10px;
+    }
+}           
+
+@media screen and (max-width: 768px) {
+    .sidebar-overlay.open-sidebar {
+        display: block;
+    }
+    .main-body.open-sidebar {
+        width: 100%;
+        left: 0;
+    }
+}     
+
+@media screen and (max-width: 576px) {
+    .navbar .hamburger-btn {
+        padding: 0;
+        font-size: 20px;
+    }    
+    .navbar .nav-title {
+        font-size: 20px;
+        margin-left: 8px;
+    }    
+    .navbar .current-page {
+        font-size: 14px;
+    }
+}  
