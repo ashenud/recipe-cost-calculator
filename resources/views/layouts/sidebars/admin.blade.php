@@ -6,12 +6,12 @@
             </a>
         </li>
         <li class="side-item">
-            <a class="side-link li-supp" href="{{ url('/admin/ingredient_categories') }}">
+            <a class="side-link li-ingredient-cat" href="{{ url('/admin/ingredient/category') }}">
                 <i class="bi bi-cart-check-fill"></i> Categories
             </a>
         </li>
         <li class="side-item">
-            <a class="side-link li-supp" href="{{ url('/admin/ingredients') }}">
+            <a class="side-link li-ingredient" href="{{ url('/admin/ingredient') }}">
                 <i class="bi bi-cart4"></i> Ingredients
             </a>
         </li>

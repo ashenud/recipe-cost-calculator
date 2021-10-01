@@ -68,15 +68,21 @@
     <script src="{{ asset('vendor/select2/select2.min.js') }}"></script>
     <script src="{{ asset('libs/js/custom-script.js')}}"></script>
 
+    @yield('script')
+
     @include('includes.sweetalert')
 
-    <script>
+    <script>        
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        
         $(document).ready(function() {
             $('.js-example-basic-single').select2();
         });
     </script>
-    
-    @yield('script')
 
 </body>
 </html>

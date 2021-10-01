@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\IngredientCategoryController;
+use App\Http\Controllers\Admin\IngredientController;
 use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -34,6 +36,17 @@ Route::group(['middleware' => ['admin']], function () {
 
     Route::group(['prefix' => 'admin'], function () {
         Route::get('dashboard', [AdminController::class, 'index'])->name('admin');
+
+        Route::group(['prefix' => 'ingredient'], function () {
+            Route::group(['prefix' => 'category'], function () {
+                Route::get('/', [IngredientCategoryController::class, 'index'])->name('ingredient_categories');
+                Route::get('datatable', [IngredientCategoryController::class, 'datatable']);
+                Route::post('getdata', [IngredientCategoryController::class, 'getdata']);
+                Route::post('store', [IngredientCategoryController::class, 'store']);
+                Route::post('update', [IngredientCategoryController::class, 'update']);
+                Route::post('status', [IngredientCategoryController::class, 'status']);
+            });
+        });
     });
 
 });
