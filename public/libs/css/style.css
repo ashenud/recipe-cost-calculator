@@ -221,7 +221,7 @@ body {
     border-color: #17c0dc;
 }
 
-.btn-sheding {
+.btn-action {
     color: #454545;
     background-color: #9db48d !important;
 }
@@ -233,7 +233,7 @@ body {
 
 .btn-floating {
     position: fixed;
-    bottom: 65px;
+    bottom: 55px;
     right: 30px;
     z-index: 101;
     border-radius: 50px;

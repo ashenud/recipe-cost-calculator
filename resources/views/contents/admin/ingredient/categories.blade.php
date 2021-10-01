@@ -14,62 +14,60 @@
 <div class="content">
    
     <div class="container">
-        <div class="container">
 
-            <div class="data-table-area">
-                <table width="100%" class="table data-table table-hover" id="data-table">
-                    <thead>
-                        <tr>
-                            <th width="40%" scope="col">Category Name</th>
-                            <th width="20%" scope="col">Category Code</th>
-                            <th width="20%" scope="col">Short Name</th>
-                            <th width="20%"scope="col">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                </table>
-            </div>
-    
-            <button type="button" class="btn btn-primary btn-lg btn-floating" onclick="openInsertModal(0)">
-                <i class="fas fa-plus"></i>
-            </button>
-    
-            <!-- Modal -->
-            <div class="modal fade" id="data_modal" aria-labelledby="view_model_Label" data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true">
-                <div class="modal-dialog .modal-side .modal-top-right">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="model_Label">INSERT NEW</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="form-area">
-                                <div class="form-outline mb-4">
-                                    <label class="form-label" for="name">Name</label>
-                                    <input type="text" id="name" name="name" class="form-control input-handler"/>
-                                </div>
-                                <div class="form-outline mb-4">
-                                    <label class="form-label" for="code">Code</label>
-                                    <input type="text" id="code" name="code" class="form-control input-handler"/>
-                                </div>
-                                <div class="form-outline mb-3">
-                                    <label class="form-label" for="short_name">Short Name</label>
-                                    <input type="text" id="short_name" name="short_name" class="form-control input-handler"/>
-                                </div>
+        <div class="data-table-area">
+            <table width="100%" class="table data-table table-hover" id="data-table">
+                <thead>
+                    <tr>
+                        <th width="40%" scope="col">Category Name</th>
+                        <th width="20%" scope="col">Category Code</th>
+                        <th width="20%" scope="col">Short Name</th>
+                        <th width="20%"scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+
+        <button type="button" class="btn btn-primary btn-lg btn-floating" onclick="openInsertModal(0)">
+            <i class="fas fa-plus"></i>
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="data_modal" aria-labelledby="view_model_Label" data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true">
+            <div class="modal-dialog .modal-side .modal-top-right">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="model_Label">INSERT NEW</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-area">
+                            <div class="form-outline mb-4">
+                                <label class="form-label" for="name">Name</label>
+                                <input type="text" id="name" name="name" class="form-control input-handler"/>
+                            </div>
+                            <div class="form-outline mb-4">
+                                <label class="form-label" for="code">Code</label>
+                                <input type="text" id="code" name="code" class="form-control input-handler"/>
+                            </div>
+                            <div class="form-outline mb-3">
+                                <label class="form-label" for="short_name">Short Name</label>
+                                <input type="text" id="short_name" name="short_name" class="form-control input-handler"/>
                             </div>
                         </div>
-                        <div class="modal-footer">
-                            <input type="hidden" id="id" name="id"/>
-                            <input type="hidden" id="type" name="type" value="0"/>
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">CLOCE</button>
-                            <button type="button" class="btn btn-primary btn-submit float-right" onclick="submitData()">SUBMIT</button>
-                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="hidden" id="id" name="id"/>
+                        <input type="hidden" id="type" name="type" value="0"/>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">CLOCE</button>
+                        <button type="button" class="btn btn-primary btn-submit float-right" onclick="submitData()">SUBMIT</button>
                     </div>
                 </div>
             </div>
-    
         </div>
+
     </div>
 
 </div>
