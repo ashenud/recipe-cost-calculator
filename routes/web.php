@@ -46,6 +46,12 @@ Route::group(['middleware' => ['admin']], function () {
                 Route::post('update', [IngredientCategoryController::class, 'update']);
                 Route::post('status', [IngredientCategoryController::class, 'status']);
             });
+            Route::get('/', [IngredientController::class, 'index'])->name('ingredients');
+            Route::get('datatable', [IngredientController::class, 'datatable']);
+            Route::post('getdata', [IngredientController::class, 'getdata']);
+            Route::post('store', [IngredientController::class, 'store']);
+            Route::post('update', [IngredientController::class, 'update']);
+            Route::post('status', [IngredientController::class, 'status']);
         });
     });
 

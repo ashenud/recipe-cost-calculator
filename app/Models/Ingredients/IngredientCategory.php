@@ -23,7 +23,7 @@ class IngredientCategory extends Model
         'in_cat_short_name'
     ];
 
-    public function hasIngredients() {
+    public function has_ingredients() {
         return $this->hasMany(Ingredient::class,'in_cat_id');
     }
 }

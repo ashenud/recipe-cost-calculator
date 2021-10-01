@@ -29,8 +29,8 @@ class Ingredient extends Model
         'unit'
     ];
 
-    public function belongedCategory(){
-        return $this->belongsTo(IngredientCategory::class,'in_cat_id');
+    public function belonged_category(){
+        return $this->belongsTo(IngredientCategory::class,'in_cat_id')->withTrashed();
     }
 
 }
