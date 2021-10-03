@@ -24,7 +24,7 @@
     <link rel="stylesheet" href="{{ asset('vendor/fonts/circularStd/index.css') }}">
     <link rel="stylesheet" href="{{ asset('libs/css/style-front.css') }}">
 
-    <title>{{ config('sfa.short_name') }} | @yield('title')</title>
+    <title>{{ config('rcc.short_name') }} | @yield('title')</title>
 
 </head>
 
