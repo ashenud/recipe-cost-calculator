@@ -10,13 +10,19 @@
     font-size: 12px;
     font-weight: bold;
 }
-.head-row .head-table .head-input.date:focus,
-.head-row .head-table .head-input.date {
+.head-row .head-table .head-input.recipe-date:focus,
+.head-row .head-table .head-input.recipe-date {
     border: none;
     box-shadow: none;
     cursor: default;
 }
 
+.recipe-row .recipe-table-error {
+    font-size: 12px;
+    position: absolute;
+    margin-top: -18px;
+    color: #e14545;
+}
 .recipe-row .recipe-table .form-group {
     margin-bottom: 0;
 }
@@ -30,4 +36,12 @@
 .recipe-row .image-area .image-display {
     max-width: 325px;
     max-height: 220px;
+}
+
+.recipe-row .btn-area {
+    text-align: right;
+}
+.recipe-row .btn-area .btn {
+    padding: 8px 20px;
+    width: 120px;
 }

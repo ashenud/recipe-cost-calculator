@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\IngredientCategoryController;
 use App\Http\Controllers\Admin\IngredientController;
+use App\Http\Controllers\Admin\RecipeController;
 use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -53,6 +54,12 @@ Route::group(['middleware' => ['admin']], function () {
             Route::post('store', [IngredientController::class, 'store']);
             Route::post('update', [IngredientController::class, 'update']);
             Route::post('status', [IngredientController::class, 'status']);
+        });
+
+        Route::group(['prefix' => 'recipe'], function () {
+            Route::get('/', [RecipeController::class, 'index'])->name('recipes');
+            Route::get('datatable', [RecipeController::class, 'datatable']);
+            Route::post('store', [RecipeController::class, 'store']);
         });
     });
 

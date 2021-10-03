@@ -16,142 +16,157 @@
     <div class="container">
         <div class="card">
             <div class="card-body">
-                <div class="row head-row mb-4">
-                    <div class="col-lg-6">
-                        <table class="head-table w-100">
-                            <thead>
-                                <tr>
-                                    <th>DATE</th>
-                                    <td><input type="text" id="date" name="date" value="{{date('Y-m-d')}}" class="head-input date form-control"></td>
-                                </tr>
-                                <tr>
-                                    <th>DISH NAME</th>
-                                    <td><input type="text" id="dish_name" name="dish_name" class="head-input form-control" autocomplete="off"></td>
-                                </tr>
-                                <tr>
-                                    <th>CURRENCY FOR CALCULATION</th>
-                                    <td>
-                                        <select id="currency" name="currency" class="form-control js-example-basic-single" onchange="handleCurrencyChange()">
-                                            <option value="">SELECT CURRENCY</option>
-                                            @if (isset($currencies))
-                                                @foreach ($currencies as $data)
-                                                    <option value="{{ $data->cur_id.",".$data->cur_name }}" @if ($data->cur_id == config('rcc.cur_lka')) selected @endif>{{ $data->cur_description }}</option>
-                                                @endforeach
-                                            @endif
-                                        </select>
-                                        <input type="hidden" id="currency_id" name="currency_id">
-                                    </td>
-                                </tr>
-                            </thead>
-                        </table>
-                    </div>
-                </div>
-
-                <div class="row recipe-row">
-                    <div class="col-lg-8">
-                        <table width="100%" class="table recipe-table" align="center">
-                            <thead>
-                                <tr>
-                                    <th width="5%" height="25"></th>
-                                    <th width="30%">INGREDIENT NAME</th>
-                                    <th width="20%">UNIT</th>
-                                    <th width="10%">QTY</th>
-                                    <th width="15%" id="currency_th">U. COST</th>
-                                    <th width="20%">TOATAL</th>
-                                </tr>
-                            </thead>
-                            <tbody id="tbl_body">
-                                <tr id="tr_1">
-                                    <td>
-                                        <div class="form-group">
-                                            <button type="button" id="plus_icon_1" class="btn btn-plus" onclick="addNewRow(1)">
-                                                <i class="bi bi-plus-square-fill"></i>
-                                            </button>
-                                            <button type="button" id="minus_icon_1" class="btn btn-minus" style="display: none" onclick="removeCurretRow(1)">
-                                                <i class="bi bi-dash-square-fill"></i>
-                                            </button>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="form-group">
-                                            <select id="ingredient_1" name="ingredient_1" class="form-control js-example-auto-single" onchange="handleIngredientChange(1)">
-                                                <option value="">SELECT INGREDIENT</option>
-                                            </select>                              
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="form-group">
-                                            <select id="unit_1" name="unit_1" class="form-control js-example-basic-single" onchange="handleUnitChange(1)">
-                                                <option value="">SELECT UNIT</option>
-                                                @if (isset($units))
-                                                    @foreach ($units as $data)
-                                                        <option value="{{ $data->unit_id }}">{{ $data->unit_name }}</option>
+                <form action="{{ url('admin/recipe/store') }}" method="POST" name="main_form" id="main_form" onsubmit="validateFormData();" enctype="multipart/form-data"> 
+                    @csrf
+                    <div class="row head-row mb-5">
+                        <div class="col-lg-6">
+                            <table class="head-table w-100">
+                                <thead>
+                                    <tr>
+                                        <th>DATE</th>
+                                        <td><input type="text" id="recipe_date" name="recipe_date" value="{{date('Y-m-d')}}" class="head-input recipe-date form-control"></td>
+                                    </tr>
+                                    <tr>
+                                        <th>RECIPE CODE</th>
+                                        <td><input type="text" id="recipe_code" name="recipe_code" class="head-input form-control" autocomplete="off"></td>
+                                    </tr>
+                                    <tr>
+                                        <th>RECIPE NAME</th>
+                                        <td><input type="text" id="recipe_name" name="recipe_name" class="head-input form-control" autocomplete="off"></td>
+                                    </tr>
+                                    <tr>
+                                        <th>CURRENCY FOR CALCULATION</th>
+                                        <td>
+                                            <select id="currency" name="currency" class="form-control js-example-basic-single" onchange="handleCurrencyChange()">
+                                                <option value="">SELECT CURRENCY</option>
+                                                @if (isset($currencies))
+                                                    @foreach ($currencies as $data)
+                                                        <option value="{{ $data->cur_id.",".$data->cur_name }}" @if ($data->cur_id == config('rcc.cur_lka')) selected @endif>{{ $data->cur_description }}</option>
                                                     @endforeach
                                                 @endif
                                             </select>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="form-group">
-                                            <input type="number" id="qty_1" name="qty_1" class="form-control text-center" min="1" onkeyup="handleQtyChange(1)">
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="form-group">
-                                            <input type="number" id="unit_cost_1" name="unit_cost_1" class="form-control text-right" min="0" onkeyup="calculateRowTotalCost(1)">
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="form-group">
-                                            <input type="number" id="line_cost_1" id="line_cost_1" class="form-control text-right" readonly>
-                                        </div>
-                                    </td>
-                                </tr>                                         
-                            </tbody>
-                            <input type="hidden" id="row_count" name="row_count" value="1" />
-                            <tfoot>
-                                <tr>
-                                    <td colspan="5" style="text-align: right">TOTAL COST &nbsp;</td>
-                                    <td>
-                                        <div class="form-group">
-                                            <b> <input id="total_recipe_cost" name="total_recipe_cost" class="form-control text-right" value="0.00" readonly> </b>
-                                        </div> 
-                                    </td>
-                                </tr>                    
-                            </tfoot>
-                        </table>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="form-group row">
-                            <div class="col-12 col-sm-12 col-lg-12">
-                                <div class="card" style="width: 100%">
-                                    <div class="card-header">
-                                        <h6 class="card-title">DISH IMAGE</h6>
-                                    </div>
-                                    <div class="card-body">
-                                        <input type="file" id="dish_image" name="dish_image" class="form-control" accept="image/gif, image/jpeg, image/png" onchange="handleImageInput(this)">
-                                        <div id="image_area" class="image-area">
-                                            <img id="image_display" class="image-display" src="{{asset('img/dish-preview.jpg')}}" alt="display selected image" />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <div class="col-12 col-sm-12 col-lg-12">
-                                <div class="card" style="width: 100%;">
-                                    <div class="card-header">
-                                        <h6 class="card-title">PREPARATION</h6>
-                                    </div>
-                                    <div class="card-body">
-                                        <textarea id="preparation" name="preparation" style="width: 100%" rows="10"></textarea>
-                                    </div>
-                                </div>
-                            </div>
+                                            <input type="hidden" id="currency_id" name="currency_id">
+                                        </td>
+                                    </tr>
+                                </thead>
+                            </table>
                         </div>
                     </div>
-                </div>
 
+                    <div class="row recipe-row">
+                        <div class="col-lg-8">
+                            <label id="recipe_table_error" class="recipe-table-error" style="display: none">please select at least one ingredient !</label>
+                            <table width="100%" class="table recipe-table" align="center">
+                                <thead>
+                                    <tr>
+                                        <th width="5%" height="25"></th>
+                                        <th width="30%">INGREDIENT NAME</th>
+                                        <th width="20%">UNIT</th>
+                                        <th width="10%">QTY</th>
+                                        <th width="15%" id="currency_th">U. COST</th>
+                                        <th width="20%">TOATAL</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbl_body">
+                                    <tr id="tr_1">
+                                        <td>
+                                            <div class="form-group">
+                                                <button type="button" id="plus_icon_1" class="btn btn-plus" onclick="addNewRow(1)">
+                                                    <i class="bi bi-plus-square-fill"></i>
+                                                </button>
+                                                <button type="button" id="minus_icon_1" class="btn btn-minus" style="display: none" onclick="removeCurretRow(1)">
+                                                    <i class="bi bi-dash-square-fill"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group">
+                                                <select id="ingredient_1" name="ingredient_1" class="form-control js-example-auto-single" onchange="handleIngredientChange(1)">
+                                                    <option value="">SELECT INGREDIENT</option>
+                                                </select>                              
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group">
+                                                <select id="unit_1" name="unit_1" class="form-control js-example-basic-single" onchange="handleUnitChange(1)">
+                                                    <option value="">SELECT UNIT</option>
+                                                    @if (isset($units))
+                                                        @foreach ($units as $data)
+                                                            <option value="{{ $data->unit_id }}">{{ $data->unit_name }}</option>
+                                                        @endforeach
+                                                    @endif
+                                                </select>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group">
+                                                <input type="number" id="qty_1" name="qty_1" class="form-control text-center" min="1" onkeyup="handleQtyChange(1)">
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group">
+                                                <input type="number" id="unit_cost_1" name="unit_cost_1" class="form-control text-right" min="0" onkeyup="calculateRowTotalCost(1)">
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group">
+                                                <input type="number" id="line_cost_1" name="line_cost_1" class="form-control text-right" readonly>
+                                            </div>
+                                        </td>
+                                    </tr>                                         
+                                </tbody>
+                                <input type="hidden" id="row_count" name="row_count" value="1" />
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="5" style="text-align: right">RECIPE COST &nbsp;</td>
+                                        <td>
+                                            <div class="form-group">
+                                                <b> <input id="recipe_cost" name="recipe_cost" class="form-control text-right" value="0.00" readonly> </b>
+                                            </div> 
+                                        </td>
+                                    </tr>                    
+                                </tfoot>
+                            </table>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group row">
+                                <div class="col-12 col-sm-12 col-lg-12">
+                                    <div class="card" style="width: 100%">
+                                        <div class="card-header">
+                                            <h6 class="card-title">RECIPE IMAGE</h6>
+                                        </div>
+                                        <div class="card-body">
+                                            <input type="file" id="recipe_image" name="recipe_image" class="form-control" accept="image/gif, image/jpeg, image/png" onchange="handleImageInput(this)">
+                                            <div id="image_area" class="image-area">
+                                                <img id="image_display" class="image-display" src="{{asset('img/dish-preview.jpg')}}" alt="display selected image" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-12 col-sm-12 col-lg-12">
+                                    <div class="card" style="width: 100%;">
+                                        <div class="card-header">
+                                            <h6 class="card-title">PREPARATION</h6>
+                                        </div>
+                                        <div class="card-body">
+                                            <textarea id="recipe_preparation" name="recipe_preparation" style="width: 100%" class="form-control" rows="10"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-12 col-sm-12 col-lg-12">
+                                    <div class="btn-area">
+                                        <button type="button" class="btn btn-secondary" onclick="resetPage()">RESET</button>
+                                        <button type="button" id="btn_submit" class="btn btn-primary btn-submit float-right" onclick="submitForm('main_form','btn_submit')">SUBMIT</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -255,7 +270,7 @@
                                     </td>
                                     <td>
                                         <div class="form-group">
-                                            <input type="number" id="line_cost_${new_row}" id="line_cost_${new_row}" class="form-control text-right" readonly>
+                                            <input type="number" id="line_cost_${new_row}" name="line_cost_${new_row}" class="form-control text-right" readonly>
                                         </div>
                                     </td>
                                 </tr>`);
@@ -383,7 +398,7 @@
                 sum += parseFloat($(`#line_cost_${i}`).val());
             }
         }        
-        $(`#total_recipe_cost`).val(sum.toFixed(2));
+        $(`#recipe_cost`).val(sum.toFixed(2));
     }
 
     function handleImageInput(input) {
@@ -400,6 +415,107 @@
         }
     }
 
+    function validateFormData() {
+        var valid = true;
+        if ( $("#recipe_name").val().length === 0 ){
+            valid =false;
+            $('#recipe_name').focus();
+            $('#recipe_name').addClass('is-invalid');
+        }
+        else {
+            $('#recipe_name').removeClass('is-invalid');
+        }
+        if ( $("#currency_id").val().length === 0 ){
+            valid =false;
+            $('#currency').focus();
+            $($('#currency').data('select2').$selection).addClass('is-invalid');
+        }
+        else {
+            $($('#currency').data('select2').$selection).removeClass('is-invalid');
+        }
+        if ( $("#recipe_preparation").val().length === 0 ){
+            valid =false;
+            $('#recipe_preparation').addClass('is-invalid');
+        }
+        else {
+            $('#recipe_preparation').removeClass('is-invalid');
+        }
+
+        var ingredient_count = 0;
+        for (let i = 1; i <= rowCount; i++) {
+            if($(`#ingredient_${i}`).length > 0) {
+                if($(`#ingredient_${i}`).val().length != 0) {
+                    ingredient_count++;
+                    if ($(`#unit_${i}`).val().length === 0){
+                        valid =false;
+                        $(`#unit_${i}`).focus();
+                        $($(`#unit_${i}`).data('select2').$selection).addClass('is-invalid');
+                    }
+                    else {
+                        $($(`#unit_${i}`).data('select2').$selection).removeClass('is-invalid');
+                    }
+                    if ($(`#qty_${i}`).val().length === 0 || $(`#qty_${i}`).val() == 0){
+                        valid =false;
+                        $(`#qty_${i}`).focus();
+                        $(`#qty_${i}`).addClass('is-invalid');
+                    }
+                    else {
+                        $(`#qty_${i}`).removeClass('is-invalid');
+                    }
+                    if ($(`#unit_cost_${i}`).val().length === 0 || $(`#unit_cost_${i}`).val() == 0){
+                        valid =false;
+                        $(`#unit_cost_${i}`).focus();
+                        $(`#unit_cost_${i}`).addClass('is-invalid');
+                    }
+                    else {
+                        $(`#unit_cost_${i}`).removeClass('is-invalid');
+                    }
+                }
+            }          
+        }
+        if(ingredient_count == 0) {
+            valid =false;
+            $('#recipe_table_error').show();
+        }
+        else {
+            $('#recipe_table_error').hide();
+        }
+        return valid;
+    }
+    
+    function submitForm(form,button) {
+        if(validateFormData()) {
+            swal({
+                title: 'Are you sure?',
+                text: `You are going to submit this record !`,
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes'
+            }).then((result) => {
+                if (result.value) {
+                    document.getElementById(button).style.display = "none";
+                    document.forms[form].submit();
+                }
+            });
+        }
+        else {
+            swal("Opps !", "Please check errors", "error");
+        }
+    }
+
+    function resetPage() {
+        swal({
+            title: 'Are you sure?',
+            text: `You are going to reset this page !`,
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes'
+        }).then((result) => {
+            if (result.value) {
+                location.reload();
+            }
+        });
+    }
 </script>
 
 @endsection
