@@ -48,6 +48,7 @@ Route::group(['middleware' => ['admin']], function () {
             });
             Route::get('/', [IngredientController::class, 'index'])->name('ingredients');
             Route::get('datatable', [IngredientController::class, 'datatable']);
+            Route::post('autocomplete', [IngredientController::class, 'autocomplete']);
             Route::post('getdata', [IngredientController::class, 'getdata']);
             Route::post('store', [IngredientController::class, 'store']);
             Route::post('update', [IngredientController::class, 'update']);

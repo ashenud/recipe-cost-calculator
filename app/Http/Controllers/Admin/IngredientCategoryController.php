@@ -69,7 +69,7 @@ class IngredientCategoryController extends Controller
         else {
             return response()->json([
                 'result' => false,
-                'message' => 'Record not dound !',
+                'message' => 'Record not found !',
             ]);
         }
     }

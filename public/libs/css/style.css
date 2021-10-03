@@ -47,6 +47,10 @@ body {
     color: red;
 }
 
+.btn:focus {
+    box-shadow: none;
+}
+
 .btn {
     font-size: 14px;
     padding: 4px 16px;
@@ -241,6 +245,16 @@ body {
     height: 50px;
     font-size: 20px;
     padding: 10px 15px;
+}
+
+.btn-plus,
+.btn-plus:hover {
+    color: #9db48d;
+}
+
+.btn-minus,
+.btn-minus:hover {
+    color: #e14545;
 }
 
 

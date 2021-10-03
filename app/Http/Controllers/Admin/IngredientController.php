@@ -55,8 +55,22 @@ class IngredientController extends Controller
         }
     }
 
-    public function getdata(Request $request ) {
+    public function autocomplete(Request $request ) {
+        $data = Ingredient::where('in_name', 'like', '%' . $request->search_term . '%')->limit(20)->get();
+        $data->transform(function($d) {
+            $category = $d->belonged_category;
+            return [
+                "id" => $d->in_id,
+                "text" => $d->in_name,
+                "code" => $d->in_code,
+                "short_name" => $d->in_short_name,
+                "category" => $category->in_cat_id,
+            ];
+        });        
+        return response()->json($data);
+    }
 
+    public function getdata(Request $request ) {
         $data = Ingredient::where('in_id',$request->id)->limit(1)->get();
         $data->transform(function($d) {
             $category = $d->belonged_category;
@@ -79,7 +93,7 @@ class IngredientController extends Controller
         else {
             return response()->json([
                 'result' => false,
-                'message' => 'Record not dound !',
+                'message' => 'Record not found !',
             ]);
         }
     }

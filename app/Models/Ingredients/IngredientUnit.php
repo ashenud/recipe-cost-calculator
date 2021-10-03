@@ -7,23 +7,17 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Venturecraft\Revisionable\RevisionableTrait;
 
-class IngredientCategory extends Model
+class IngredientUnit extends Model
 {
     use HasFactory, SoftDeletes, RevisionableTrait;
 
     protected $revisionCreationsEnabled = true;
 
-    protected $primaryKey = 'in_cat_id';
+    protected $primaryKey = 'unit_id';
 
-    protected $table = 'ingredient_categories';
+    protected $table = 'ingredient_units';
 
     protected $fillable = [
-        'in_cat_name',
-        'in_cat_code',
-        'in_cat_short_name'
+        'unit_name'
     ];
-
-    public function has_ingredients() {
-        return $this->hasMany(Ingredient::class,'in_cat_id')->withTrashed();
-    }
 }

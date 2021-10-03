@@ -23,10 +23,10 @@ class Ingredient extends Model
         'in_short_name',
         'in_other_names',
         'in_cat_id',
-        'price',
-        'pack_size',
+        'unit',
+        'unit_price',
         'weight_volume',
-        'unit'
+        'pack_size',
     ];
 
     public function belonged_category(){
