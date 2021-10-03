@@ -24,7 +24,7 @@ class DatabaseSeeder extends Seeder
             ['u_id' => '1', 'name' => 'Ashen Udithamal', 'role_id' => config('rcc.admin_type',1), 'username' => 'ashen',  'password' => Hash::make(123), 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
         ]);
 
-        DB::table('ingredient_units')->insert([
+        DB::table('system_units')->insert([
             ['unit_id' => '1','unit_name' => 'Cup 1','deleted_at' => NULL,'created_at' => Carbon::now(),'updated_at' => Carbon::now()],
             ['unit_id' => '2','unit_name' => 'Cup ½','deleted_at' => NULL,'created_at' => Carbon::now(),'updated_at' => Carbon::now()],
             ['unit_id' => '3','unit_name' => 'Cup ⅓','deleted_at' => NULL,'created_at' => Carbon::now(),'updated_at' => Carbon::now()],
@@ -50,6 +50,14 @@ class DatabaseSeeder extends Seeder
             ['unit_id' => '23','unit_name' => 'Tsp ⅕','deleted_at' => NULL,'created_at' => Carbon::now(),'updated_at' => Carbon::now()],
             ['unit_id' => '24','unit_name' => 'Tsp ⅙','deleted_at' => NULL,'created_at' => Carbon::now(),'updated_at' => Carbon::now()],
             ['unit_id' => '25','unit_name' => 'Tsp ⅛','deleted_at' => NULL,'created_at' => Carbon::now(),'updated_at' => Carbon::now()],
+        ]);
+
+        DB::table('system_currencies')->insert([
+            ['cur_id' => '1','cur_name' => 'Rs','cur_description' => 'Sri Lankan Rupee','deleted_at' => NULL,'created_at' => Carbon::now(),'updated_at' => Carbon::now()],
+            ['cur_id' => '2','cur_name' => '$','cur_description' => 'US Dollar','deleted_at' => NULL,'created_at' => Carbon::now(),'updated_at' => Carbon::now()],
+            ['cur_id' => '3','cur_name' => '€','cur_description' => 'Euro','deleted_at' => NULL,'created_at' => Carbon::now(),'updated_at' => Carbon::now()],
+            ['cur_id' => '4','cur_name' => 'KWD','cur_description' => 'Kuwaiti Dinar','deleted_at' => NULL,'created_at' => Carbon::now(),'updated_at' => Carbon::now()],
+            ['cur_id' => '5','cur_name' => 'SAR','cur_description' => 'Saudi Riyal','deleted_at' => NULL,'created_at' => Carbon::now(),'updated_at' => Carbon::now()],
         ]);
 
         DB::table('ingredient_categories')->insert([
@@ -269,7 +277,7 @@ class DatabaseSeeder extends Seeder
             ['in_id' => '200','in_name' => 'Rhubarb','in_cat_id' => '4','in_code' => 'IN/00200','in_short_name' => NULL,'in_other_names' => NULL,'unit_price' => NULL,'pack_size' => NULL,'weight_volume' => NULL,'unit' => NULL,'deleted_at' => NULL,'created_at' => Carbon::now(),'updated_at' => Carbon::now()],
             ['in_id' => '201','in_name' => 'Strawberries','in_cat_id' => '4','in_code' => 'IN/00201','in_short_name' => NULL,'in_other_names' => NULL,'unit_price' => NULL,'pack_size' => NULL,'weight_volume' => NULL,'unit' => NULL,'deleted_at' => NULL,'created_at' => Carbon::now(),'updated_at' => Carbon::now()],
             ['in_id' => '202','in_name' => 'Watermelon','in_cat_id' => '4','in_code' => 'IN/00202','in_short_name' => NULL,'in_other_names' => NULL,'unit_price' => NULL,'pack_size' => NULL,'weight_volume' => NULL,'unit' => NULL,'deleted_at' => NULL,'created_at' => Carbon::now(),'updated_at' => Carbon::now()],
-            ['in_id' => '203','in_name' => 'All Beef Salami','in_cat_id' => '5','in_code' => 'IN/00203','in_short_name' => NULL,'in_other_names' => NULL,'unit_price' => NULL,'pack_size' => NULL,'weight_volume' => NULL,'unit' => NULL,'deleted_at' => '2021-10-02 16:29:17','created_at' => Carbon::now(),'updated_at' => Carbon::now()],
+            ['in_id' => '203','in_name' => 'All Beef Salami','in_cat_id' => '5','in_code' => 'IN/00203','in_short_name' => NULL,'in_other_names' => NULL,'unit_price' => NULL,'pack_size' => NULL,'weight_volume' => NULL,'unit' => NULL,'deleted_at' => NULL,'created_at' => Carbon::now(),'updated_at' => Carbon::now()],
             ['in_id' => '204','in_name' => 'Baby Goat Leg/shoulder','in_cat_id' => '5','in_code' => 'IN/00204','in_short_name' => NULL,'in_other_names' => NULL,'unit_price' => NULL,'pack_size' => NULL,'weight_volume' => NULL,'unit' => NULL,'deleted_at' => NULL,'created_at' => Carbon::now(),'updated_at' => Carbon::now()],
             ['in_id' => '205','in_name' => 'Beef','in_cat_id' => '5','in_code' => 'IN/00205','in_short_name' => NULL,'in_other_names' => NULL,'unit_price' => NULL,'pack_size' => NULL,'weight_volume' => NULL,'unit' => NULL,'deleted_at' => NULL,'created_at' => Carbon::now(),'updated_at' => Carbon::now()],
             ['in_id' => '206','in_name' => 'Beef Bologna','in_cat_id' => '5','in_code' => 'IN/00206','in_short_name' => NULL,'in_other_names' => NULL,'unit_price' => NULL,'pack_size' => NULL,'weight_volume' => NULL,'unit' => NULL,'deleted_at' => NULL,'created_at' => Carbon::now(),'updated_at' => Carbon::now()],

@@ -1,23 +1,24 @@
 <?php
 
-namespace App\Models\Ingredients;
+namespace App\Models\Other;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Venturecraft\Revisionable\RevisionableTrait;
 
-class IngredientUnit extends Model
+class SystemCurrency extends Model
 {
     use HasFactory, SoftDeletes, RevisionableTrait;
 
     protected $revisionCreationsEnabled = true;
 
-    protected $primaryKey = 'unit_id';
+    protected $primaryKey = 'cur_id';
 
-    protected $table = 'ingredient_units';
+    protected $table = 'system_currencies';
 
     protected $fillable = [
-        'unit_name'
+        'cur_name',
+        'cur_description',
     ];
 }

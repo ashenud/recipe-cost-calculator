@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateIngredientUnitsTable extends Migration
+class CreateSystemCurrenciesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,10 @@ class CreateIngredientUnitsTable extends Migration
      */
     public function up()
     {
-        Schema::create('ingredient_units', function (Blueprint $table) {
-            $table->id('unit_id');            
-            $table->string('unit_name')->unique()->nullable();
+        Schema::create('system_currencies', function (Blueprint $table) {
+            $table->id('cur_id');            
+            $table->string('cur_name')->unique()->nullable();
+            $table->string('cur_description')->nullable();
 
             $table->softDeletes();
             $table->timestamps();
@@ -29,6 +30,6 @@ class CreateIngredientUnitsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ingredient_units');
+        Schema::dropIfExists('system_currencies');
     }
 }

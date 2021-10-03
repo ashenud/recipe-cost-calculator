@@ -31,7 +31,7 @@
 
     @yield('head-scripts')
 
-    <title>{{ config('sfa.short_name') }} | @yield('title')</title>
+    <title>{{ config('rcc.short_name') }} | @yield('title')</title>
 
 </head>
 <body>

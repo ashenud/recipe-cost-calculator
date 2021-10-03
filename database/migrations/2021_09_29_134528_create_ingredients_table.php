@@ -25,7 +25,7 @@ class CreateIngredientsTable extends Migration
             $table->string('in_other_names')->nullable();
 
             $table->unsignedBigInteger('unit')->nullable();
-            $table->foreign('unit')->references('unit_id')->on('ingredient_units');
+            $table->foreign('unit')->references('unit_id')->on('system_units');
             $table->decimal('weight_volume', 20, 2)->nullable()->comment('weight or volum qty per unit');            
             $table->decimal('unit_price', 20, 2)->nullable();
             $table->string('pack_size')->nullable()->comment('case conversion');

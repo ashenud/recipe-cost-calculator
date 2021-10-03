@@ -28,6 +28,20 @@
                                     <th>DISH NAME</th>
                                     <td><input type="text" id="dish_name" name="dish_name" class="head-input form-control" autocomplete="off"></td>
                                 </tr>
+                                <tr>
+                                    <th>CURRENCY FOR CALCULATION</th>
+                                    <td>
+                                        <select id="currency" name="currency" class="form-control js-example-basic-single" onchange="handleCurrencyChange()">
+                                            <option value="">SELECT CURRENCY</option>
+                                            @if (isset($currencies))
+                                                @foreach ($currencies as $data)
+                                                    <option value="{{ $data->cur_id.",".$data->cur_name }}" @if ($data->cur_id == config('rcc.cur_lka')) selected @endif>{{ $data->cur_description }}</option>
+                                                @endforeach
+                                            @endif
+                                        </select>
+                                        <input type="hidden" id="currency_id" name="currency_id">
+                                    </td>
+                                </tr>
                             </thead>
                         </table>
                     </div>
@@ -41,8 +55,8 @@
                                     <th width="5%" height="25"></th>
                                     <th width="30%">INGREDIENT NAME</th>
                                     <th width="20%">UNIT</th>
-                                    <th width="15%">U. COST(Rs.)</th>
                                     <th width="10%">QTY</th>
+                                    <th width="15%" id="currency_th">U. COST</th>
                                     <th width="20%">TOATAL</th>
                                 </tr>
                             </thead>
@@ -79,12 +93,12 @@
                                     </td>
                                     <td>
                                         <div class="form-group">
-                                            <input type="number" id="unit_cost_1" name="unit_cost_1" class="form-control text-right" min="0" onkeyup="handleUnitCostChange(1)">
+                                            <input type="number" id="qty_1" name="qty_1" class="form-control text-center" min="1" onkeyup="handleQtyChange(1)">
                                         </div>
                                     </td>
                                     <td>
                                         <div class="form-group">
-                                            <input type="number" id="qty_1" name="qty_1" class="form-control text-right" min="1" onkeyup="calculateRowTotalCost(1)">
+                                            <input type="number" id="unit_cost_1" name="unit_cost_1" class="form-control text-right" min="0" onkeyup="calculateRowTotalCost(1)">
                                         </div>
                                     </td>
                                     <td>
@@ -97,7 +111,7 @@
                             <input type="hidden" id="row_count" name="row_count" value="1" />
                             <tfoot>
                                 <tr>
-                                    <td colspan="5" style="text-align: right">TOTAL COST (RS.) &nbsp;</td>
+                                    <td colspan="5" style="text-align: right">TOTAL COST &nbsp;</td>
                                     <td>
                                         <div class="form-group">
                                             <b> <input id="total_recipe_cost" name="total_recipe_cost" class="form-control text-right" value="0.00" readonly> </b>
@@ -117,7 +131,7 @@
                                     <div class="card-body">
                                         <input type="file" id="dish_image" name="dish_image" class="form-control" accept="image/gif, image/jpeg, image/png" onchange="handleImageInput(this)">
                                         <div id="image_area" class="image-area">
-                                            <img id="image_display" class="image-display" src="#" alt="display selected image" />
+                                            <img id="image_display" class="image-display" src="{{asset('img/dish-preview.jpg')}}" alt="display selected image" />
                                         </div>
                                     </div>
                                 </div>
@@ -161,7 +175,7 @@
 
     $(document).ready(function() {
         $('.side-link.li-dash').addClass('active');
-
+        handleCurrencyChange();
         $('.js-example-auto-single').select2({
             ajax: {
                 url: "{{ url('admin/ingredient/autocomplete') }}",
@@ -184,6 +198,18 @@
             minimumInputLength: 2
         });
     });
+
+    function handleCurrencyChange() {
+        if($(`#currency`).val() != "") {
+            var currency = $(`#currency`).val().split(",");
+            $(`#currency_id`).val(currency[0]);
+            $(`#currency_th`).html(`U. COST(${currency[1]})`);
+        }
+        else {
+            $(`#currency_id`).val("");
+            $(`#currency_th`).html("U.COST");
+        }
+    }
 
     function addNewRow(row) {
         var new_row = row+1;
@@ -219,12 +245,12 @@
                                     </td>
                                     <td>
                                         <div class="form-group">
-                                            <input type="number" id="unit_cost_${new_row}" name="unit_cost_${new_row}" class="form-control text-right" min="0" onkeyup="handleUnitCostChange(${new_row})">
+                                            <input type="number" id="qty_${new_row}" name="qty_${new_row}" class="form-control text-center" min="1" onkeyup="handleQtyChange(${new_row})">
                                         </div>
                                     </td>
                                     <td>
                                         <div class="form-group">
-                                            <input type="number" id="qty_${new_row}" name="qty_${new_row}" class="form-control text-right" min="1" onkeyup="calculateRowTotalCost(${new_row})">
+                                            <input type="number" id="unit_cost_${new_row}" name="unit_cost_${new_row}" class="form-control text-right" min="0" onkeyup="calculateRowTotalCost(${new_row})">
                                         </div>
                                     </td>
                                     <td>
@@ -304,8 +330,8 @@
         calculateTotalCost();
     }
 
-    function handleUnitCostChange(row) {
-        $(`#qty_${row}`).val("");
+    function handleQtyChange(row) {
+        $(`#unit_cost_${row}`).val("");
         $(`#line_cost_${row}`).val("");
         calculateTotalCost();
     }
@@ -326,22 +352,22 @@
         else {
             $($(`#unit_${row}`).data('select2').$selection).removeClass('is-invalid');
         }
-        if ($(`#unit_cost_${row}`).val().length === 0 || $(`#unit_cost_${row}`).val() == 0){
+        if ($(`#qty_${row}`).val().length === 0 || $(`#qty_${row}`).val() == 0){
             valid =false;
-            $(`#unit_cost_${row}`).addClass('is-invalid');
+            $(`#qty_${row}`).addClass('is-invalid');
         }
         else {
-            $(`#unit_cost_${row}`).removeClass('is-invalid');
+            $(`#qty_${row}`).removeClass('is-invalid');
         }
         return valid;
     }
 
     function calculateRowTotalCost(row) {
         var sum = 0;
-        if(validateCurrentRow(row)) {  
-            var unit_cost = parseFloat($(`#unit_cost_${row}`).val());
+        if(validateCurrentRow(row)) { 
             var qty = parseFloat($(`#qty_${row}`).val());
-            sum += parseFloat(unit_cost*qty);
+            var unit_cost = parseFloat($(`#unit_cost_${row}`).val());
+            sum += parseFloat(qty*unit_cost);
             $(`#line_cost_${row}`).val(sum.toFixed(2));            
             calculateTotalCost();
         }
@@ -368,6 +394,9 @@
                     .attr('src', e.target.result);
             };
             reader.readAsDataURL(input.files[0]);
+        }
+        else {
+            $('#image_display').attr("src", "{{asset('img/dish-preview.jpg')}}");
         }
     }
 
