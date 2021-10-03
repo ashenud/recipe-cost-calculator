@@ -15,8 +15,8 @@
     </script>
 
     <!-- favicon -->
-    <link rel="apple-touch-icon" sizes="76x76" href="{{asset('images/logo.png')}}">
-    <link rel="icon" type="image/png" href="{{asset('images/logo.png')}}">
+    <link rel="apple-touch-icon" sizes="76x76" href="{{asset('img/apple-icon.png')}}">
+    <link rel="icon" type="image/png" href="{{asset('img/favicon.png')}}">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}">
