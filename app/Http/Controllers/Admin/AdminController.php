@@ -16,7 +16,7 @@ class AdminController extends Controller
         $data = array();
         $data['page_title'] = 'Dashboard';
 
-        $recipe_code = RecipeHead::genRecipeCode();
+        $recipe_code = RecipeHead::genCode();
         $units = SystemUnit::get();
         $currencies = SystemCurrency::get();
 

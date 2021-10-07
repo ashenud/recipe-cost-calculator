@@ -29,8 +29,18 @@ class Ingredient extends Model
         'pack_size',
     ];
 
-    public function belonged_category(){
+    public function belonged_category() {
         return $this->belongsTo(IngredientCategory::class,'in_cat_id')->withTrashed();
+    }
+
+    public static function genCode() {
+        $max_count = self::withTrashed()->count();
+        if($max_count) {
+            $code = 'IN/'.str_pad($max_count+1,4,0,STR_PAD_LEFT);
+        } else {
+            $code = 'IN/0001';
+        }
+        return $code;
     }
 
 }

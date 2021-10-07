@@ -50,7 +50,8 @@
                             </div>
                             <div class="form-outline mb-4">
                                 <label class="form-label" for="code">Code</label>
-                                <input type="text" id="code" name="code" class="form-control input-handler"/>
+                                <input type="text" id="code" name="code" class="form-control" readonly/>
+                                <input type="hidden" id="next_code" value="{{$next_code}}"/>
                             </div>
                             <div class="form-outline mb-3">
                                 <label class="form-label" for="short_name">Short Name</label>
@@ -144,6 +145,8 @@
     }
 
     function openInsertModal(type) {
+        var next_code = $('#next_code').val();
+        $('#code').val(next_code);
         $('.input-handler').val("");
         $('.input-handler').attr('readonly', false);
         $('.btn-submit').prop('disabled', false);
@@ -189,6 +192,8 @@
                         console.log(response);
                         swal("Good Job !", response.message, "success");
                         $('.input-handler').val("");
+                        $('#code').val("");
+                        $("#next_code").val(response.next_code);
                         $('#data_modal').modal('toggle');
                         dataTable.ajax.reload();
                     }

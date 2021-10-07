@@ -26,4 +26,14 @@ class IngredientCategory extends Model
     public function has_ingredients() {
         return $this->hasMany(Ingredient::class,'in_cat_id')->withTrashed();
     }
+
+    public static function genCode() {
+        $max_count = self::withTrashed()->count();
+        if($max_count) {
+            $code = 'INC/'.str_pad($max_count+1,4,0,STR_PAD_LEFT);
+        } else {
+            $code = 'INC/0001';
+        }
+        return $code;
+    }
 }

@@ -21,8 +21,9 @@ class IngredientController extends Controller
 
         $categories = IngredientCategory::get();
         $data['categories'] = $categories;
+        $next_code = Ingredient::genCode();
 
-        return view('contents.admin.ingredient.ingredients')->with('data',$data);
+        return view('contents.admin.ingredient.ingredients', compact('data','next_code'));
     }
 
     public function datatable(Request $request ) {
@@ -124,6 +125,7 @@ class IngredientController extends Controller
                 return response()->json([
                     'result' => true,
                     'message' => 'Record successfully inserted',
+                    'next_code' => Ingredient::genCode(),
                 ]);
             } catch (\Exception $e) {
                 DB::rollback();    
@@ -160,6 +162,7 @@ class IngredientController extends Controller
                 return response()->json([
                     'result' => true,
                     'message' => 'Record successfully updated',
+                    'next_code' => Ingredient::genCode(),
                 ]);
             } catch (\Exception $e) {
                 DB::rollback();    
