@@ -28,7 +28,7 @@
                                     </tr>
                                     <tr>
                                         <th>RECIPE CODE</th>
-                                        <td><input type="text" id="recipe_code" name="recipe_code" class="head-input form-control" autocomplete="off"></td>
+                                        <td><input type="text" id="recipe_code" name="recipe_code" class="head-input form-control" value="{{$recipe_code}}" readonly></td>
                                     </tr>
                                     <tr>
                                         <th>RECIPE NAME</th>
@@ -60,11 +60,11 @@
                                 <thead>
                                     <tr>
                                         <th width="5%" height="25"></th>
-                                        <th width="30%">INGREDIENT NAME</th>
-                                        <th width="20%">UNIT</th>
+                                        <th width="43%">INGREDIENT NAME</th>
+                                        <th width="15%">UNIT</th>
                                         <th width="10%">QTY</th>
-                                        <th width="15%" id="currency_th">U. COST</th>
-                                        <th width="20%">TOATAL</th>
+                                        <th width="12%" id="currency_th">U. COST</th>
+                                        <th width="15%">TOATAL</th>
                                     </tr>
                                 </thead>
                                 <tbody id="tbl_body">
@@ -124,7 +124,18 @@
                                                 <b> <input id="recipe_cost" name="recipe_cost" class="form-control text-right" value="0.00" readonly> </b>
                                             </div> 
                                         </td>
-                                    </tr>                    
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4" style="text-align: right">COST PER PRICE (%) &nbsp;</td>
+                                        <td colspan="1" style="text-align: right">
+                                            <b> <input id="profit_discount" name="profit_discount" class="form-control text-right" min="0" onkeyup="calculateTotalCostWithProfit()"> </b>
+                                        </td>
+                                        <td>
+                                            <div class="form-group">
+                                                <b> <input id="cost_with_profit" name="cost_with_profit" class="form-control text-right" value="0.00" readonly> </b>
+                                            </div> 
+                                        </td>
+                                    </tr>
                                 </tfoot>
                             </table>
                         </div>
@@ -218,7 +229,7 @@
         if($(`#currency`).val() != "") {
             var currency = $(`#currency`).val().split(",");
             $(`#currency_id`).val(currency[0]);
-            $(`#currency_th`).html(`U. COST(${currency[1]})`);
+            $(`#currency_th`).html(`U. COST<span class="currency-symbol">(${currency[1]})`);
         }
         else {
             $(`#currency_id`).val("");
@@ -309,6 +320,7 @@
 
     function removeCurretRow(row) {
         $('#tr_' + row).remove();
+        calculateTotalCost();
     }
 
     function handleIngredientChange(row) {
@@ -394,11 +406,32 @@
     function calculateTotalCost() {
         var sum = 0;
         for (var i = 1; i <= rowCount; i++) {
-            if ($(`#line_cost_${i}`).length > 0 && $(`#line_cost_${i}`).val() > 0) {
+            if ($(`#line_cost_${i}`).length > 0 && parseFloat($(`#line_cost_${i}`).val()) > 0) {
                 sum += parseFloat($(`#line_cost_${i}`).val());
             }
         }        
         $(`#recipe_cost`).val(sum.toFixed(2));
+        calculateTotalCostWithProfit();
+    }
+
+    function calculateTotalCostWithProfit() {
+        var sum = 0;
+        if($(`#profit_discount`).val().length > 0) {
+            if(parseFloat($(`#profit_discount`).val()) <= 0) {
+                console.error('error');
+                $(`#cost_with_profit`).val(sum.toFixed(2));
+            }
+            else {                
+                var discount = parseFloat($(`#profit_discount`).val());
+                var total_cost = parseFloat($(`#recipe_cost`).val());
+                sum += parseFloat((total_cost/100)*(100+discount));
+                $(`#cost_with_profit`).val(sum.toFixed(2));
+            }
+        }
+        else {
+            $(`#cost_with_profit`).val(sum.toFixed(2));
+        }
+
     }
 
     function handleImageInput(input) {

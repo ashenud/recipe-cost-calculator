@@ -23,6 +23,18 @@
     margin-top: -18px;
     color: #e14545;
 }
+
+.recipe-row .recipe-table th,
+.recipe-row .recipe-table td {
+    font-size: 10px;
+}
+.recipe-row .recipe-table #currency_th {
+    font-size: 8px;
+}
+.recipe-row .recipe-table .btn-minus,
+.recipe-row .recipe-table .btn-plus {
+    padding: 4px 8px;
+}
 .recipe-row .recipe-table .form-group {
     margin-bottom: 0;
 }

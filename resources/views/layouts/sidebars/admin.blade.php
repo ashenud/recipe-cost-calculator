@@ -15,6 +15,11 @@
                 <i class="bi bi-cart4"></i> Ingredients
             </a>
         </li>
+        <li class="side-item">
+            <a class="side-link li-recipe" href="{{ url('/admin/recipe') }}">
+                <i class="bi bi-journal-medical"></i> Recipes
+            </a>
+        </li>
     </ul>
 </div>
 <div class="sidebar-overlay open-sidebar" id="sidebar-overlay"></div>

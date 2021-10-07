@@ -34,7 +34,7 @@ class IngredientCategoryController extends Controller
                     ->addColumn('action', function($data){
                         $status = $data->status;
                         $id = $data->id;
-                        return view('components.actions', compact('id','status'));;
+                        return view('components.actions.ingredient-btn', compact('id','status'));
                     })
                     ->filter(function ($query) use ($request) {
                         if ($request->has('search') && ! is_null($request->get('search')['value']) ) {

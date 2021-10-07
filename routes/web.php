@@ -33,9 +33,10 @@ Route::post('/logout', [LoginController::class, 'logout']);
 
 /* @@ admin controllers @@ */
 
-Route::group(['middleware' => ['admin']], function () {
-
-    Route::group(['prefix' => 'admin'], function () {
+Route::group([
+    'middleware' => ['admin'],
+    'prefix' => 'admin'],
+    function () {
         Route::get('dashboard', [AdminController::class, 'index'])->name('admin');
 
         Route::group(['prefix' => 'ingredient'], function () {
@@ -60,7 +61,11 @@ Route::group(['middleware' => ['admin']], function () {
             Route::get('/', [RecipeController::class, 'index'])->name('recipes');
             Route::get('datatable', [RecipeController::class, 'datatable']);
             Route::post('store', [RecipeController::class, 'store']);
+            Route::get('edit/{id}', [RecipeController::class, 'edit'])->name('recipe_edit');
+            Route::get('display/{id}', [RecipeController::class, 'display'])->name('recipe_display');
+            Route::get('pdf/{id}', [RecipeController::class, 'pdf'])->name('recipe_pdf');
+            Route::post('status', [RecipeController::class, 'status']);
         });
-    });
 
-});
+    }
+);

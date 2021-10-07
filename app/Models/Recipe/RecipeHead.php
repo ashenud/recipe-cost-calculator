@@ -32,8 +32,18 @@ class RecipeHead extends Model
         return $this->hasMany(RecipeLine::class,'recipe_id')->withTrashed();
     }
 
-    public function belonged_currency(){
+    public function belonged_currency() {
         return $this->belongsTo(SystemCurrency::class,'cur_id','recipe_currency')->withTrashed();
+    }
+
+    public static function genRecipeCode() {
+        $max_count = self::withTrashed()->count();
+        if($max_count) {
+            $recipe_code = 'RECIPE/'.str_pad($max_count+1,4,0,STR_PAD_LEFT);
+        } else {
+            $recipe_code = 'RECIPE/0001';
+        }
+        return $recipe_code;
     }
 
 }

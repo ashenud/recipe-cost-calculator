@@ -27,15 +27,17 @@ class IngredientController extends Controller
 
     public function datatable(Request $request ) {
         if ($request->ajax()) {
-            $data = Ingredient::withTrashed()->with('belonged_category')->whereHas('belonged_category', function (Builder $query) {
-                $query->whereNull('deleted_at');
-            });
+            $data = Ingredient::withTrashed()
+                    ->with('belonged_category')
+                    ->whereHas('belonged_category', function (Builder $query) {
+                        $query->whereNull('deleted_at');
+                    });
 
             return DataTables::of($data)
                     ->addColumn('action', function($data){
                         $status = $data->deleted_at;
                         $id = $data->in_id;
-                        return view('components.actions', compact('id','status'));;
+                        return view('components.actions.ingredient-btn', compact('id','status'));
                     })
                     ->filter(function ($query) use ($request) {
                         if ($request->has('search') && ! is_null($request->get('search')['value']) ) {

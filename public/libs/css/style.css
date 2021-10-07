@@ -339,6 +339,16 @@ body {
 }
 
 /*-----------------------
+| Action Modals
+-------------------------*/
+.table .btn-image-modal-action {
+    border-radius: 5px; 
+    cursor: pointer; 
+    max-width: 50px; 
+    max-height: 50px;
+}
+
+/*-----------------------
 | Datatables
 -------------------------*/
 .dataTables_wrapper .dataTables_length,

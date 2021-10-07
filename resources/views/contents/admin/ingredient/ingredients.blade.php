@@ -116,7 +116,7 @@
             ajax: "{{ url('admin/ingredient/datatable') }}",
             columns: [
                 { data:'in_name', name:'in_name'},
-                { data:'belonged_category.in_cat_name', name:'belonged_category.in_cat_name'},
+                { data:'belonged_category.in_cat_name', name:'belonged_category.in_cat_name', orderable: false,},
                 { data:'in_code', name:'in_code'},
                 { data:'in_short_name', name:'in_short_name'},
                 { data:'action', name:'action', className: 'text-center', orderable: false, searchable: false},

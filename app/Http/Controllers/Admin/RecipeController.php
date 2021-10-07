@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Ingredients\Ingredient;
 use App\Models\Recipe\RecipeHead;
 use App\Models\Recipe\RecipeLine;
 use Illuminate\Http\Request;
@@ -11,9 +10,65 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+use Yajra\DataTables\Facades\DataTables;
 
 class RecipeController extends Controller
 {
+    
+    public function index() {
+        $data = array();
+        $data['page_title'] = 'Recipe';
+
+        return view('contents.admin.recipe')->with('data',$data);
+    }
+
+    public function datatable(Request $request ) {
+        if ($request->ajax()) {
+            $data = DB::table('recipe_heads AS rh')
+                        ->join('system_currencies AS sc', 'sc.cur_id', 'rh.recipe_currency')
+                        ->select([
+                            'rh.recipe_id',
+                            'rh.recipe_name',
+                            'rh.recipe_date',
+                            'rh.recipe_code',
+                            DB::raw('CONCAT(rh.recipe_cost," (",sc.cur_name,")") AS recipe_cost'),
+                            'rh.recipe_image',
+                            'rh.deleted_at',
+                        ])
+                        ->groupBy('rh.recipe_id');
+
+            return DataTables::of($data)
+                    ->addColumn('image', function ($data) {
+                        $id = $data->recipe_id;
+                        $image_name = $data->recipe_name;
+                        $img_url = asset($data->recipe_image);
+                        $img_path = str_replace('/storage/','',$data->recipe_image);
+                        $is_exists = Storage::disk('public')->exists($img_path);
+                        return view('components.actions.image-modal', compact('id','image_name','img_url','img_path','is_exists'));
+                    })
+                    ->addColumn('action', function($data){
+                        $status = $data->deleted_at;
+                        $id = $data->recipe_id;
+                        $route_display = "recipe_display";
+                        $route_pdf = "recipe_pdf";
+                        $route_edit = "recipe_edit";
+                        return view('components.actions.recipe-btn', compact('id','status','route_display','route_pdf','route_edit'));
+                    })
+                    ->filter(function ($query) use ($request) {
+                        if ($request->has('search') && !is_null($request->get('search')['value'])) {
+                            $regex = $request->get('search')['value'];
+                            return $query->where(function ($queryNew) use ($regex) {
+                                $queryNew->where('rh.recipe_name', 'like', '%' . $regex . '%')
+                                    ->orWhere('rh.recipe_code', 'like', '%' . $regex . '%')
+                                    ->orWhere('rh.recipe_date', 'like', '%' . $regex . '%')
+                                    ->orWhere('rh.recipe_cost', 'like', '%' . $regex . '%');
+                            });
+                        }
+                    })
+                    ->rawColumns(['image','action'])
+                    ->make(true);
+        }
+    }
     
     public function store(Request $request ) {
         // dd($request->all());
@@ -21,10 +76,7 @@ class RecipeController extends Controller
             'recipe_code' => 'unique:recipe_heads,recipe_code',
         ]);
         if ($validator->fails()) {
-            return response()->json([
-                'result' => false,
-                'message' => $validator->errors()->first(),
-            ]);
+            return redirect()->route('admin')->with('error', $validator->errors()->first());
         }
 
         else {
@@ -43,7 +95,7 @@ class RecipeController extends Controller
                 $head = new RecipeHead();
                 $head->recipe_name = $request->recipe_name;
                 $head->recipe_date = date('Y-m-d');
-                $head->recipe_code = null;
+                $head->recipe_code = RecipeHead::genRecipeCode();
                 $head->recipe_currency = $request->currency_id;
                 $head->recipe_image = $recipe_image;
                 $head->recipe_preparation = $request->recipe_preparation;
@@ -72,7 +124,7 @@ class RecipeController extends Controller
                 return redirect()->route('admin')->with('success', 'Record has been successfully inserted !');
             } catch (\Exception $e) {
                 DB::rollback();
-                dd($e);
+                // dd($e);
                 return redirect()->route('admin')->with('error', 'Record has not been successfully inserted !');
             }
         }
