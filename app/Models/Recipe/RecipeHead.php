@@ -33,7 +33,7 @@ class RecipeHead extends Model
     }
 
     public function belonged_currency() {
-        return $this->belongsTo(SystemCurrency::class,'cur_id','recipe_currency')->withTrashed();
+        return $this->belongsTo(SystemCurrency::class,'recipe_currency','cur_id')->withTrashed();
     }
 
     public static function genCode() {

@@ -34,7 +34,7 @@ class RecipeLine extends Model
     }
 
     public function belonged_ingredient() {
-        return $this->belongsTo(Ingredient::class,'in_id','ingredient_id')->withTrashed();
+        return $this->belongsTo(Ingredient::class,'ingredient_id')->withTrashed();
     }
 
     public function belonged_unit(){

@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Yajra\DataTables\Facades\DataTables;
+use Barryvdh\DomPDF\Facade as PDF;
 
 class RecipeController extends Controller
 {
@@ -19,7 +20,7 @@ class RecipeController extends Controller
         $data = array();
         $data['page_title'] = 'Recipe';
 
-        return view('contents.admin.recipe')->with('data',$data);
+        return view('contents.admin.recipe.view')->with('data',$data);
     }
 
     public function datatable(Request $request ) {
@@ -127,6 +128,48 @@ class RecipeController extends Controller
                 // dd($e);
                 return redirect()->route('admin')->with('error', 'Record has not been successfully inserted !');
             }
+        }
+    }
+
+    public function display(Request $request, $id ) {
+        $recipe = RecipeHead::find($id);
+        $data = array();
+        $data['page_title'] = 'DISPLAY '.strtoupper($recipe->recipe_name);
+        return view('contents.admin.recipe.display', compact('recipe','data'));
+    }
+
+    public function pdf(Request $request, $id ) {
+        $recipe = RecipeHead::find($id);
+        $pdfname = $recipe->recipe_name;
+        $pdfname = strtoupper($pdfname);
+        $pdfname .= ".pdf";
+        $pdf = PDF::loadView('contents.admin.recipe.pdf', compact('recipe'));
+        $pdf->setPaper('A4', 'portrait');
+        return $pdf->stream($pdfname);
+    }
+
+    public function status(Request $request ) {
+        try {
+            DB::beginTransaction();
+            $head = RecipeHead::withTrashed()->find($request->id);
+            if($request->next_status == 0) {
+                $head->delete();
+            }
+            else {
+                $head->restore();
+            }
+            
+            DB::commit();
+            return response()->json([
+                'result' => true,
+                'message' => 'Status changed successfully',
+            ]);
+        } catch (\Exception $e) {
+            DB::rollback();    
+            return response()->json([
+                'result' => false,
+                'message' => $e->getMessage(),
+            ]);
         }
     }
 

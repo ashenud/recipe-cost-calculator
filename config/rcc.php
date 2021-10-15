@@ -53,4 +53,17 @@ return [
 
    'base_url' => env('RCC_BASE_URL', '/'),
 
+    /*
+    |--------------------------------------------------------------------------
+    | Company Details
+    |--------------------------------------------------------------------------
+    |
+    | This use to get ajax request when app run without domain 
+    |
+    */
+
+    'company_name'=>env('COMPANY_NAME',"FLUSION CUSINE BY SUNANDA"),
+    'company_email'=>env('COMPANY_ADDRESS',"chefweeratunga@gmail.com"),
+    'company_telephone'=>env('COMPANY_TELEPHONE',"+94 70 100 0074"),
+
 ];
