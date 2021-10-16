@@ -138,14 +138,27 @@ class RecipeController extends Controller
         return view('contents.admin.recipe.display', compact('recipe','data'));
     }
 
-    public function pdf(Request $request, $id ) {
-        $recipe = RecipeHead::find($id);
-        $pdfname = $recipe->recipe_name;
-        $pdfname = strtoupper($pdfname);
-        $pdfname .= ".pdf";
-        $pdf = PDF::loadView('contents.admin.recipe.pdf', compact('recipe'));
-        $pdf->setPaper('A4', 'portrait');
-        return $pdf->stream($pdfname);
+    public function pdf(Request $request) {
+        $recipe = RecipeHead::find($request->recipe_id);
+        $yield = ($request->yield) ? $request->yield : 1;
+        $profit_discount = ($request->profit_discount) ? $request->profit_discount : 0;
+        
+        // $pdfname = strtoupper($pdfname);
+        // $pdfname .= ".pdf";
+        // $pdf = PDF::loadView('contents.admin.recipe.pdf', compact('recipe'));
+        // $pdf->setPaper('A4', 'portrait');
+        // return $pdf->stream($pdfname);
+
+        $pdf = PDF::loadView('contents.admin.recipe.pdf', compact('recipe','yield','profit_discount'));
+        $pdf->setPaper('A4', 'portrait');  
+        $content = $pdf->download()->getOriginalContent();
+        Storage::put('public/exports/recipe/recipe-details-export.pdf',$content);
+        return response()->json([
+            'file'=> 'storage/exports/recipe/recipe-details-export.pdf',
+            'yield'=> $yield,
+            'profit_discount'=> $profit_discount,
+        ]);
+
     }
 
     public function status(Request $request ) {

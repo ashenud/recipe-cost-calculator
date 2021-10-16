@@ -63,7 +63,7 @@ Route::group([
             Route::post('store', [RecipeController::class, 'store']);
             Route::get('edit/{id}', [RecipeController::class, 'edit'])->name('recipe_edit');
             Route::get('display/{id}', [RecipeController::class, 'display'])->name('recipe_display');
-            Route::get('pdf/{id}', [RecipeController::class, 'pdf'])->name('recipe_pdf');
+            Route::get('pdf', [RecipeController::class, 'pdf']);
             Route::post('status', [RecipeController::class, 'status']);
         });
 
