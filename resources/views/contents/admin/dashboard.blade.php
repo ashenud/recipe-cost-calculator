@@ -31,11 +31,24 @@
                                         <td><input type="text" id="recipe_code" name="recipe_code" class="head-input form-control" value="{{$recipe_code}}" readonly></td>
                                     </tr>
                                     <tr>
+                                        <th>RECIPE CATEGORY</th>
+                                        <td>
+                                            <select id="recipe_category" name="recipe_category" class="form-control js-example-basic-single">
+                                                <option value="">SELECT CATEGORY</option>
+                                                @if (isset($recipe_categories))
+                                                    @foreach ($recipe_categories as $data)
+                                                        <option value="{{$data->rc_id}}">{{ $data->rc_name}}</option>
+                                                    @endforeach
+                                                @endif
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
                                         <th>RECIPE NAME</th>
                                         <td><input type="text" id="recipe_name" name="recipe_name" class="head-input form-control" autocomplete="off"></td>
                                     </tr>
                                     <tr>
-                                        <th>CURRENCY FOR CALCULATION</th>
+                                        <th>CURRENCY</th>
                                         <td>
                                             <select id="currency" name="currency" class="form-control js-example-basic-single" onchange="handleCurrencyChange()">
                                                 <option value="">SELECT CURRENCY</option>
@@ -450,6 +463,13 @@
 
     function validateFormData() {
         var valid = true;
+        if ( $("#recipe_category").val().length === 0 ){
+            valid =false;
+            $($('#recipe_category').data('select2').$selection).addClass('is-invalid');
+        }
+        else {
+            $($('#recipe_category').data('select2').$selection).removeClass('is-invalid');
+        }
         if ( $("#recipe_name").val().length === 0 ){
             valid =false;
             $('#recipe_name').focus();

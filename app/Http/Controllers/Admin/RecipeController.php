@@ -97,6 +97,7 @@ class RecipeController extends Controller
                 $head->recipe_name = $request->recipe_name;
                 $head->recipe_date = date('Y-m-d');
                 $head->recipe_code = RecipeHead::genCode();
+                $head->recipe_category = $request->recipe_category;
                 $head->recipe_currency = $request->currency_id;
                 $head->recipe_image = $recipe_image;
                 $head->recipe_preparation = $request->recipe_preparation;

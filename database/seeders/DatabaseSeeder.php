@@ -26,30 +26,30 @@ class DatabaseSeeder extends Seeder
 
         DB::table('system_units')->insert([
             ['unit_id' => '1','unit_name' => 'Cup 1','deleted_at' => NULL,'created_at' => Carbon::now(),'updated_at' => Carbon::now()],
-            ['unit_id' => '2','unit_name' => 'Cup ½','deleted_at' => NULL,'created_at' => Carbon::now(),'updated_at' => Carbon::now()],
-            ['unit_id' => '3','unit_name' => 'Cup ⅓','deleted_at' => NULL,'created_at' => Carbon::now(),'updated_at' => Carbon::now()],
-            ['unit_id' => '4','unit_name' => 'Cup ¼','deleted_at' => NULL,'created_at' => Carbon::now(),'updated_at' => Carbon::now()],
-            ['unit_id' => '5','unit_name' => 'Cup ⅕','deleted_at' => NULL,'created_at' => Carbon::now(),'updated_at' => Carbon::now()],
-            ['unit_id' => '6','unit_name' => 'Cup ⅙','deleted_at' => NULL,'created_at' => Carbon::now(),'updated_at' => Carbon::now()],
-            ['unit_id' => '7','unit_name' => 'Cup ⅛','deleted_at' => NULL,'created_at' => Carbon::now(),'updated_at' => Carbon::now()],
+            ['unit_id' => '2','unit_name' => 'Cup 1/2','deleted_at' => NULL,'created_at' => Carbon::now(),'updated_at' => Carbon::now()],
+            ['unit_id' => '3','unit_name' => 'Cup 1/3','deleted_at' => NULL,'created_at' => Carbon::now(),'updated_at' => Carbon::now()],
+            ['unit_id' => '4','unit_name' => 'Cup 1/4','deleted_at' => NULL,'created_at' => Carbon::now(),'updated_at' => Carbon::now()],
+            ['unit_id' => '5','unit_name' => 'Cup 1/5','deleted_at' => NULL,'created_at' => Carbon::now(),'updated_at' => Carbon::now()],
+            ['unit_id' => '6','unit_name' => 'Cup 1/6','deleted_at' => NULL,'created_at' => Carbon::now(),'updated_at' => Carbon::now()],
+            ['unit_id' => '7','unit_name' => 'Cup 1/8','deleted_at' => NULL,'created_at' => Carbon::now(),'updated_at' => Carbon::now()],
             ['unit_id' => '8','unit_name' => 'Gm','deleted_at' => NULL,'created_at' => Carbon::now(),'updated_at' => Carbon::now()],
             ['unit_id' => '9','unit_name' => 'Kg','deleted_at' => NULL,'created_at' => Carbon::now(),'updated_at' => Carbon::now()],
             ['unit_id' => '10','unit_name' => 'Lt','deleted_at' => NULL,'created_at' => Carbon::now(),'updated_at' => Carbon::now()],
             ['unit_id' => '11','unit_name' => 'Ml','deleted_at' => NULL,'created_at' => Carbon::now(),'updated_at' => Carbon::now()],
             ['unit_id' => '12','unit_name' => 'Tbsp 1','deleted_at' => NULL,'created_at' => Carbon::now(),'updated_at' => Carbon::now()],
-            ['unit_id' => '13','unit_name' => 'Tbsp ½','deleted_at' => NULL,'created_at' => Carbon::now(),'updated_at' => Carbon::now()],
-            ['unit_id' => '14','unit_name' => 'Tbsp ⅓','deleted_at' => NULL,'created_at' => Carbon::now(),'updated_at' => Carbon::now()],
-            ['unit_id' => '15','unit_name' => 'Tbsp ¼','deleted_at' => NULL,'created_at' => Carbon::now(),'updated_at' => Carbon::now()],
-            ['unit_id' => '16','unit_name' => 'Tbsp ⅕','deleted_at' => NULL,'created_at' => Carbon::now(),'updated_at' => Carbon::now()],
-            ['unit_id' => '17','unit_name' => 'Tbsp ⅙','deleted_at' => NULL,'created_at' => Carbon::now(),'updated_at' => Carbon::now()],
-            ['unit_id' => '18','unit_name' => 'Tbsp ⅛','deleted_at' => NULL,'created_at' => Carbon::now(),'updated_at' => Carbon::now()],
+            ['unit_id' => '13','unit_name' => 'Tbsp 1/2','deleted_at' => NULL,'created_at' => Carbon::now(),'updated_at' => Carbon::now()],
+            ['unit_id' => '14','unit_name' => 'Tbsp 1/3','deleted_at' => NULL,'created_at' => Carbon::now(),'updated_at' => Carbon::now()],
+            ['unit_id' => '15','unit_name' => 'Tbsp 1/4','deleted_at' => NULL,'created_at' => Carbon::now(),'updated_at' => Carbon::now()],
+            ['unit_id' => '16','unit_name' => 'Tbsp 1/5','deleted_at' => NULL,'created_at' => Carbon::now(),'updated_at' => Carbon::now()],
+            ['unit_id' => '17','unit_name' => 'Tbsp 1/6','deleted_at' => NULL,'created_at' => Carbon::now(),'updated_at' => Carbon::now()],
+            ['unit_id' => '18','unit_name' => 'Tbsp 1/8','deleted_at' => NULL,'created_at' => Carbon::now(),'updated_at' => Carbon::now()],
             ['unit_id' => '19','unit_name' => 'Tsp 1','deleted_at' => NULL,'created_at' => Carbon::now(),'updated_at' => Carbon::now()],
-            ['unit_id' => '20','unit_name' => 'Tsp ½','deleted_at' => NULL,'created_at' => Carbon::now(),'updated_at' => Carbon::now()],
-            ['unit_id' => '21','unit_name' => 'Tsp ⅓','deleted_at' => NULL,'created_at' => Carbon::now(),'updated_at' => Carbon::now()],
-            ['unit_id' => '22','unit_name' => 'Tsp ¼','deleted_at' => NULL,'created_at' => Carbon::now(),'updated_at' => Carbon::now()],
-            ['unit_id' => '23','unit_name' => 'Tsp ⅕','deleted_at' => NULL,'created_at' => Carbon::now(),'updated_at' => Carbon::now()],
-            ['unit_id' => '24','unit_name' => 'Tsp ⅙','deleted_at' => NULL,'created_at' => Carbon::now(),'updated_at' => Carbon::now()],
-            ['unit_id' => '25','unit_name' => 'Tsp ⅛','deleted_at' => NULL,'created_at' => Carbon::now(),'updated_at' => Carbon::now()],
+            ['unit_id' => '20','unit_name' => 'Tsp 1/2','deleted_at' => NULL,'created_at' => Carbon::now(),'updated_at' => Carbon::now()],
+            ['unit_id' => '21','unit_name' => 'Tsp 1/3','deleted_at' => NULL,'created_at' => Carbon::now(),'updated_at' => Carbon::now()],
+            ['unit_id' => '22','unit_name' => 'Tsp 1/4','deleted_at' => NULL,'created_at' => Carbon::now(),'updated_at' => Carbon::now()],
+            ['unit_id' => '23','unit_name' => 'Tsp 1/5','deleted_at' => NULL,'created_at' => Carbon::now(),'updated_at' => Carbon::now()],
+            ['unit_id' => '24','unit_name' => 'Tsp 1/6','deleted_at' => NULL,'created_at' => Carbon::now(),'updated_at' => Carbon::now()],
+            ['unit_id' => '25','unit_name' => 'Tsp 1/8','deleted_at' => NULL,'created_at' => Carbon::now(),'updated_at' => Carbon::now()],
         ]);
 
         DB::table('system_currencies')->insert([
@@ -441,6 +441,15 @@ class DatabaseSeeder extends Seeder
             ['in_id' => '364','in_name' => 'Peelad Tomatoes','in_cat_id' => '11','in_code' => 'IN/00364','in_short_name' => NULL,'in_other_names' => NULL,'unit_price' => NULL,'pack_size' => NULL,'weight_volume' => NULL,'unit' => NULL,'deleted_at' => NULL,'created_at' => Carbon::now(),'updated_at' => Carbon::now()],
             ['in_id' => '365','in_name' => 'Tomato Ketchup','in_cat_id' => '11','in_code' => 'IN/00365','in_short_name' => NULL,'in_other_names' => NULL,'unit_price' => NULL,'pack_size' => NULL,'weight_volume' => NULL,'unit' => NULL,'deleted_at' => NULL,'created_at' => Carbon::now(),'updated_at' => Carbon::now()],
             ['in_id' => '366','in_name' => 'Tomato Paste','in_cat_id' => '11','in_code' => 'IN/00366','in_short_name' => NULL,'in_other_names' => NULL,'unit_price' => NULL,'pack_size' => NULL,'weight_volume' => NULL,'unit' => NULL,'deleted_at' => NULL,'created_at' => Carbon::now(),'updated_at' => Carbon::now()],
+        ]);
+
+        DB::table('recipe_categories')->insert([
+            ['rc_id' => '1','rc_name' => 'Lunch','deleted_at' => NULL,'created_at' => Carbon::now(),'updated_at' => Carbon::now()],
+            ['rc_id' => '2','rc_name' => 'Dinner','deleted_at' => NULL,'created_at' => Carbon::now(),'updated_at' => Carbon::now()],
+            ['rc_id' => '3','rc_name' => 'Appetizers Cold','deleted_at' => NULL,'created_at' => Carbon::now(),'updated_at' => Carbon::now()],
+            ['rc_id' => '4','rc_name' => 'Appetizers Hot','deleted_at' => NULL,'created_at' => Carbon::now(),'updated_at' => Carbon::now()],
+            ['rc_id' => '5','rc_name' => 'Dessert','deleted_at' => NULL,'created_at' => Carbon::now(),'updated_at' => Carbon::now()],
+            ['rc_id' => '6','rc_name' => 'Salad','deleted_at' => NULL,'created_at' => Carbon::now(),'updated_at' => Carbon::now()],
         ]);
 
     }

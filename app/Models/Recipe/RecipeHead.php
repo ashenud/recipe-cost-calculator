@@ -22,6 +22,7 @@ class RecipeHead extends Model
         'recipe_name',
         'recipe_date',
         'recipe_code',
+        'recipe_category',
         'recipe_currency',
         'recipe_image',
         'recipe_preparation',
@@ -34,6 +35,10 @@ class RecipeHead extends Model
 
     public function belonged_currency() {
         return $this->belongsTo(SystemCurrency::class,'recipe_currency','cur_id')->withTrashed();
+    }
+
+    public function belonged_category() {
+        return $this->belongsTo(RecipeCategory::class,'recipe_category','rc_id')->withTrashed();
     }
 
     public static function genCode() {

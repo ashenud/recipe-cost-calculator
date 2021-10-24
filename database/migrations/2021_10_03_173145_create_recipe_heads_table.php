@@ -19,6 +19,9 @@ class CreateRecipeHeadsTable extends Migration
             $table->date('recipe_date')->nullable();
             $table->string('recipe_code')->nullable()->unique();
 
+            $table->unsignedBigInteger('recipe_category')->nullable();
+            $table->foreign('recipe_category')->references('rc_id')->on('recipe_categories');
+
             $table->unsignedBigInteger('recipe_currency')->nullable();
             $table->foreign('recipe_currency')->references('cur_id')->on('system_currencies');
 

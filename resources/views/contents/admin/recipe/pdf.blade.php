@@ -104,6 +104,10 @@
                                         <td>{{$recipe->recipe_code}}</td>
                                     </tr>
                                     <tr>
+                                        <td><b>RECIPE CATEGORY</b></td>
+                                        <td>{{$recipe->belonged_category->rc_name}}</td>
+                                    </tr>
+                                    <tr>
                                         <td><b>YIELD</b></td>
                                         <td>{{$yield}}</td>
                                     </tr>

@@ -33,7 +33,11 @@
                                     <td><input type="text" class="head-input form-control" value="{{$recipe->recipe_name}}" readonly></td>
                                 </tr>
                                 <tr>
-                                    <th>CURRENCY FOR CALCULATION</th>
+                                    <th>RECIPE CATEGORY</th>
+                                    <td><input type="text" class="head-input form-control" value="{{$recipe->belonged_category->rc_name}}" readonly></td>
+                                </tr>
+                                <tr>
+                                    <th>CURRENCY</th>
                                     <td><input type="text" class="head-input form-control" value="{{$recipe->belonged_currency->cur_description}}" readonly></td>
                                 </tr>
                             </thead>
