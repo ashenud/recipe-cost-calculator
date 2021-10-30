@@ -13,6 +13,12 @@
         
         <style>
             @page { margin: 50px 10px 30px 10px;}
+            .footer {
+                width: 100%;
+                text-align: center;
+                position: fixed;
+                bottom: 0px;
+            }
             .text-right {
                 text-align: right;
             }
@@ -73,14 +79,19 @@
         </style>
     </head>
     <body style="background: white;">
+        <div class="footer">
+            <hr style="margin-top: -10px; border-color:#000;">            
+            <address class="text-left" style="margin-top: -40px;">
+                <span>{{ config('rcc.company_email') }}</span> <br>
+            </address>         
+            <address class="text-right" style="margin-top: -40px;">
+                <span>T: {{ config('rcc.company_telephone') }}</span>
+            </address>
+        </div>
         <div class="container-fluid">
             <div class="row">
                 <div class="col-xs-3">
-                    <img src="{{asset('img/favicon.png')}}" style="width: 200px; margin-top: -25px; margin-left: -15px;">
-                    <address class="text-left" style="margin-top: -35px;">
-                        <span>{{ config('rcc.company_email') }}</span> <br>
-                        <span>T: {{ config('rcc.company_telephone') }}</span>
-                    </address>
+                    <img src="{{asset('img/favicon.png')}}" style="width: 200px; margin-top: 0px; margin-left: -15px;">
                 </div>
                 <div class="col-xs-8" style="margin-top: 15px;"> 
                     <h1 style="margin-top: 0; text-align: left; text-transform: uppercase; font-size: 40px">{{$recipe->recipe_name}}</h1>
@@ -140,8 +151,8 @@
                                             <th width="8%"></th>
                                             <th width="40%">INGREDIENT NAME</th>
                                             <th width="15%">UNIT</th>
-                                            <th width="10%">QTY</th>
                                             <th width="12%">U. COST</th>
+                                            <th width="10%">QTY</th>
                                             <th width="15%">TOATAL</th>
                                         </tr>
                                     </thead>
@@ -159,8 +170,8 @@
                                             <td class="text-center">{{$key+1}}</td>
                                             <td>{{$recipe_line->belonged_ingredient->in_name}}</td>
                                             <td>{{$recipe_line->belonged_unit->unit_name}}</td>
-                                            <td class="text-right">{{number_format($qty,3)}}</td>
                                             <td class="text-right">{{number_format($recipe_line->unit_cost,2)}}</td>
+                                            <td class="text-right">{{number_format($qty,3)}}</td>
                                             <td class="text-right">{{number_format($line_cost,2)}}</td>
                                         </tr>
                                         @endforeach

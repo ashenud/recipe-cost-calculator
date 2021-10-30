@@ -75,8 +75,8 @@
                                         <th width="5%" height="25"></th>
                                         <th width="43%">INGREDIENT NAME</th>
                                         <th width="15%">UNIT</th>
-                                        <th width="10%">QTY</th>
                                         <th width="12%" id="currency_th">U. COST</th>
+                                        <th width="10%">QTY</th>
                                         <th width="15%">TOATAL</th>
                                     </tr>
                                 </thead>
@@ -113,12 +113,12 @@
                                         </td>
                                         <td>
                                             <div class="form-group">
-                                                <input type="number" id="qty_1" name="qty_1" class="form-control text-center" min="1" onkeyup="handleQtyChange(1)">
+                                                <input type="number" id="unit_cost_1" name="unit_cost_1" class="form-control text-right" min="0" onkeyup="handleUnitCostChange(1)">
                                             </div>
                                         </td>
                                         <td>
                                             <div class="form-group">
-                                                <input type="number" id="unit_cost_1" name="unit_cost_1" class="form-control text-right" min="0" onkeyup="calculateRowTotalCost(1)">
+                                                <input type="number" id="qty_1" name="qty_1" class="form-control text-center" min="1" onkeyup="calculateRowTotalCost(1)">
                                             </div>
                                         </td>
                                         <td>
@@ -284,12 +284,12 @@
                                     </td>
                                     <td>
                                         <div class="form-group">
-                                            <input type="number" id="qty_${new_row}" name="qty_${new_row}" class="form-control text-center" min="1" onkeyup="handleQtyChange(${new_row})">
+                                            <input type="number" id="unit_cost_${new_row}" name="unit_cost_${new_row}" class="form-control text-right" min="0" onkeyup="handleUnitCostChange(${new_row})">
                                         </div>
                                     </td>
                                     <td>
                                         <div class="form-group">
-                                            <input type="number" id="unit_cost_${new_row}" name="unit_cost_${new_row}" class="form-control text-right" min="0" onkeyup="calculateRowTotalCost(${new_row})">
+                                            <input type="number" id="qty_${new_row}" name="qty_${new_row}" class="form-control text-center" min="1" onkeyup="calculateRowTotalCost(${new_row})">
                                         </div>
                                     </td>
                                     <td>
@@ -370,8 +370,8 @@
         calculateTotalCost();
     }
 
-    function handleQtyChange(row) {
-        $(`#unit_cost_${row}`).val("");
+    function handleUnitCostChange(row) {
+        $(`#qty_${row}`).val("");
         $(`#line_cost_${row}`).val("");
         calculateTotalCost();
     }
@@ -392,22 +392,22 @@
         else {
             $($(`#unit_${row}`).data('select2').$selection).removeClass('is-invalid');
         }
-        if ($(`#qty_${row}`).val().length === 0 || $(`#qty_${row}`).val() == 0){
+        if ($(`#unit_cost_${row}`).val().length === 0 || $(`#unit_cost_${row}`).val() == 0){
             valid =false;
-            $(`#qty_${row}`).addClass('is-invalid');
+            $(`#unit_cost_${row}`).addClass('is-invalid');
         }
         else {
-            $(`#qty_${row}`).removeClass('is-invalid');
+            $(`#unit_cost_${row}`).removeClass('is-invalid');
         }
         return valid;
     }
 
     function calculateRowTotalCost(row) {
         var sum = 0;
-        if(validateCurrentRow(row)) { 
-            var qty = parseFloat($(`#qty_${row}`).val());
+        if(validateCurrentRow(row)) {  
             var unit_cost = parseFloat($(`#unit_cost_${row}`).val());
-            sum += parseFloat(qty*unit_cost);
+            var qty = parseFloat($(`#qty_${row}`).val());
+            sum += parseFloat(unit_cost*qty);
             $(`#line_cost_${row}`).val(sum.toFixed(2));            
             calculateTotalCost();
         }

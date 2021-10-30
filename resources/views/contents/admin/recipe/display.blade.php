@@ -53,8 +53,8 @@
                                     <th width="8%" height="25"></th>
                                     <th width="40%">INGREDIENT NAME</th>
                                     <th width="15%">UNIT</th>
-                                    <th width="10%">QTY</th>
                                     <th width="12%">U. COST</th>
+                                    <th width="10%">QTY</th>
                                     <th width="15%">TOATAL</th>
                                 </tr>
                             </thead>
@@ -71,10 +71,10 @@
                                         <input type="text" class="head-input form-control" value="{{$recipe_line->belonged_unit->unit_name}}" readonly>
                                     </td>
                                     <td>
-                                        <input type="text" class="head-input form-control text-right" value="{{$recipe_line->qty}}" readonly>
+                                        <input type="text" class="head-input form-control text-right" value="{{$recipe_line->unit_cost}}" readonly>
                                     </td>
                                     <td>
-                                        <input type="text" class="head-input form-control text-right" value="{{$recipe_line->unit_cost}}" readonly>
+                                        <input type="text" class="head-input form-control text-right" value="{{$recipe_line->qty}}" readonly>
                                     </td>
                                     <td>
                                         <input type="text" class="head-input form-control text-right" value="{{$recipe_line->line_cost}}" readonly>
