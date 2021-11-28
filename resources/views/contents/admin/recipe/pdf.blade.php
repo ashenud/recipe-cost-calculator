@@ -69,12 +69,13 @@
                 background-color: rgba(230, 230, 242, .5);
             }
             .image-area {
-                margin-top: 12px;
+                margin-top: 16px;
                 vertical-align: middle;
+                margin-left: -15px;
             }
             .image-area .image-display {
-                max-width: 180px;
-                max-height: 124px;
+                width: 210px;
+                height: 155px;
             }
         </style>
     </head>
@@ -94,14 +95,14 @@
                     <img src="{{asset('img/favicon.png')}}" style="width: 200px; margin-top: 0px; margin-left: -15px;">
                 </div>
                 <div class="col-xs-8" style="margin-top: 15px;"> 
-                    <h1 style="margin-top: 0; text-align: left; text-transform: uppercase; font-size: 40px">{{$recipe->recipe_name}}</h1>
+                    <h1 style="margin-top: 0; text-align: left; text-transform: uppercase; font-weight:normal; font-size: 40px;">{{$recipe->recipe_name}}</h1>
                 </div>
             </div>
             
-            <hr style="border-color:#A9A9A9; margin-top: -10px"/>
+            <hr style="border-color:#A9A9A9; margin-top: -15px"/>
             
             <div class="ecommerce-widget">
-                <div class="card">
+                <div class="card" style="margin-top: -15px">
                     <div class="card-body">
                         <div class="row">
                             <div class="col-xs-8">
@@ -119,11 +120,11 @@
                                         <td>{{$recipe->belonged_category->rc_name}}</td>
                                     </tr>
                                     <tr>
-                                        <td><b>YIELD</b></td>
+                                        <td><b>SERVING</b></td>
                                         <td>{{$yield}}</td>
                                     </tr>
                                     <tr>
-                                        <td><b>CURRENCY</b></td>
+                                        <td><b>POTION SIZE</b></td>
                                         <td>{{$recipe->belonged_currency->cur_description}}</td>
                                     </tr>
                                 </table>
@@ -141,7 +142,7 @@
                     </div>
                 </div>
 
-                <div class="card">
+                <div class="card" style="margin-top: -18px">
                     <div class="card-body">
                         <div class="row">
                             <div class="col-lg-8">
@@ -185,7 +186,7 @@
                                             <td class="text-right"><b>{{number_format($recipe_cost,2)}}</b></td>
                                         </tr>
                                         <tr>
-                                            <td colspan="4" class="text-right">COST PER PRICE &nbsp;</td>
+                                            <td colspan="4" class="text-right">PROFIT MARGIN &nbsp;</td>
                                             <td colspan="1" class="text-right">
                                                 <b>{{$profit_discount." (%)"}}</b>
                                             </td>
