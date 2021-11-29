@@ -36,6 +36,7 @@ class RecipeController extends Controller
                             'rh.recipe_image',
                             'rh.deleted_at',
                         ])
+                        ->whereNull('rh.deleted_at')
                         ->groupBy('rh.recipe_id');
 
             return DataTables::of($data)
