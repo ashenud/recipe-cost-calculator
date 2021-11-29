@@ -92,7 +92,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-xs-3">
-                    <img src="{{asset('img/favicon.png')}}" style="width: 200px; margin-top: 0px; margin-left: -15px;">
+                    <img src="{{asset('img/favicon.png')}}" style="width: 200px; margin-top: -20px; margin-left: -15px;">
                 </div>
                 <div class="col-xs-8" style="margin-top: 15px;"> 
                     <h1 style="margin-top: 0; text-align: left; text-transform: uppercase; font-weight:normal; font-size: 40px;">{{$recipe->recipe_name}}</h1>
